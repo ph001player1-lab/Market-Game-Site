@@ -174,6 +174,48 @@ p{margin:0 0 1.05em}
 .final h2{max-width:16ch}
 .foot{padding:26px 0;border-top:2px solid var(--ink);font-size:14px;color:var(--mute);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
+/* --- интерактивная модель рынка --- */
+.sim{display:grid;gap:16px;margin-top:clamp(28px,4vw,44px)}
+@media(min-width:900px){.sim{grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr)}}
+.sim__panel{background:#1C1C23;border:1px solid rgba(242,241,236,.16);padding:clamp(20px,3vw,30px)}
+.sim__t{margin:0 0 4px;font-size:clamp(18px,2vw,21px);font-weight:700;letter-spacing:-.01em;color:var(--paper)}
+.sim__sub{margin:0 0 22px;font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#8A8A95}
+
+.sim__row{margin-bottom:20px}
+.sim__row label{display:inline-block;font-size:15.5px;font-weight:700;color:var(--paper)}
+.sim__row output{float:right;font-size:15.5px;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums}
+.sim__row input[type=range]{
+  -webkit-appearance:none;appearance:none;display:block;clear:both;width:100%;margin:12px 0 0;
+  height:6px;border-radius:3px;background:#3A3A46;cursor:pointer;
+}
+.sim__row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:19px;height:19px;border-radius:50%;background:var(--red);border:2px solid #1C1C23;box-shadow:0 0 0 1px var(--red);cursor:pointer}
+.sim__row input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:var(--red);border:2px solid #1C1C23;box-shadow:0 0 0 1px var(--red);cursor:pointer}
+.sim__row input[type=range]:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+
+.sim__btns{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 22px}
+.sim .btn{padding:13px 22px;font-size:15px}
+.sim__cashlab{margin:0 0 4px;font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#8A8A95}
+.sim__cash{margin:0;font-family:var(--disp);font-weight:600;font-size:clamp(25px,3.4vw,33px);letter-spacing:-.02em;color:var(--paper);font-variant-numeric:tabular-nums}
+.sim__verdict{margin:16px 0 0;font-size:15.5px;color:#E9A63C;line-height:1.5}
+
+.sim__bars{display:grid;gap:11px;margin-bottom:24px}
+.simbar{display:grid;grid-template-columns:34px 1fr 46px;gap:12px;align-items:center}
+.simbar b{font-size:13.5px;font-weight:700;color:#A9A9B4;font-variant-numeric:tabular-nums}
+.simbar--me b{color:var(--red)}
+.simbar__track{height:19px;background:#2A2A33;border-radius:2px;overflow:hidden}
+.simbar__fill{height:100%;border-radius:2px;transition:width .35s cubic-bezier(.3,.7,.3,1)}
+.simbar span{font-size:13.5px;font-weight:700;color:#A9A9B4;text-align:right;font-variant-numeric:tabular-nums}
+.simbar--me span{color:var(--paper)}
+
+.sim__stats{margin:0;padding:20px 0 0;border-top:1px solid rgba(242,241,236,.14)}
+.sim__stats div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:11px 0;border-bottom:1px solid rgba(242,241,236,.08)}
+.sim__stats div:last-child{border-bottom:0}
+.sim__stats dt{font-size:15.5px;color:#A9A9B4}
+.sim__stats dd{margin:0;font-size:15.5px;font-weight:700;color:var(--paper);font-variant-numeric:tabular-nums;text-align:right}
+.sim__stats .plus{color:#4FBF7F}
+.sim__stats .minus{color:#F2705A}
+.sim__warn{margin:18px 0 0;padding:13px 15px;border-left:3px solid #E9A63C;background:rgba(233,166,60,.09);font-size:14.5px;color:#E6C88C;line-height:1.5}
+
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .hero h1,.hero .lede,.hero .btns,.hero .undercta,.hero__pic{animation:rise .7s cubic-bezier(.2,.75,.3,1) both}
 .hero .lede{animation-delay:.07s}
@@ -236,6 +278,61 @@ p{margin:0 0 1.05em}
     <figure class="figure"><img src="one-market.jpg" width="1150" height="647" alt="Один рынок на всех: поток из 10 000 клиентов проходит через модель рынка и распределяется между конкурирующими ресторанами. Один ход равен одному месяцу, игровой год — двенадцать месяцев" loading="lazy"></figure>
   </div>
 </section>
+
+<!-- МОДЕЛЬ РЫНКА -->
+<section class="sect sect--dark" id="model">
+  <div class="wrap">
+    <span class="eyebrow">МОДЕЛЬ РЫНКА</span>
+    <h2>Смотрите, как это работает</h2>
+    <div class="prose" style="max-width:76ch">
+      <p>Вот вся игра в одном экране. Представьте, что красный ресторан — это вы. Снизили цену — к вам пошёл поток, но каждый чек стал тоньше. Подняли качество — люди возвращаются, можно держать цену выше. Влили рекламу — узнаваемость выросла, но деньги ушли из кассы уже сейчас.</p>
+      <p>Двигайте рычаги — цена, качество, реклама, зал — и сразу видите, как перетекают клиенты между пятью ресторанами и что в итоге остаётся у вас: выручка, прибыль, доля рынка. Никто не ставит оценок. Считает только рынок. В живой игре так же — только двенадцать месяцев подряд и за соседним столом такие же игроки. Здесь цифры упрощены, но логика ровно та.</p>
+    </div>
+
+    <div class="sim">
+      <div class="sim__panel">
+        <h3 class="sim__t">Ваш ресторан · P1</h3>
+        <p class="sim__sub">Красный на графике — это вы</p>
+
+        <div class="sim__row">
+          <label for="simPrice">Цена среднего чека</label><output id="outPrice">380 ₽</output>
+          <input type="range" id="simPrice" min="250" max="600" step="10" value="380" aria-describedby="outPrice">
+        </div>
+        <div class="sim__row">
+          <label for="simQual">Качество</label><output id="outQual">6 / 10</output>
+          <input type="range" id="simQual" min="1" max="10" step="1" value="6" aria-describedby="outQual">
+        </div>
+        <div class="sim__row">
+          <label for="simAd">Рекламный бюджет</label><output id="outAd">150 000 ₽</output>
+          <input type="range" id="simAd" min="0" max="400000" step="10000" value="150000" aria-describedby="outAd">
+        </div>
+        <div class="sim__row">
+          <label for="simTables">Столики (вместимость)</label><output id="outTables">120</output>
+          <input type="range" id="simTables" min="60" max="220" step="5" value="120" aria-describedby="outTables">
+        </div>
+
+        <div class="sim__btns">
+          <button type="button" class="btn" id="simNext">Следующий месяц →</button>
+          <button type="button" class="btn btn--line" id="simReset">Сброс</button>
+        </div>
+
+        <p class="sim__cashlab">Деньги в кассе · месяц <span id="simMonth">1</span> из 12</p>
+        <p class="sim__cash" id="simCash">2 000 000 ₽</p>
+        <p class="sim__verdict" id="simVerdict" hidden></p>
+      </div>
+
+      <div class="sim__panel">
+        <h3 class="sim__t">Куда идут 10 000 клиентов</h3>
+        <p class="sim__sub">Клиенты уходят туда, где выгоднее и вкуснее</p>
+        <div class="sim__bars" id="simBars"></div>
+        <dl class="sim__stats" id="simStats"></dl>
+        <p class="sim__warn" id="simWarn" hidden></p>
+      </div>
+    </div>
+    <p class="figcap">Конкуренты здесь стоят на месте. В живой игре они ходят одновременно с вами, и это меняет всё.</p>
+  </div>
+</section>
+
 
 <!-- КАК ПРОХОДИТ -->
 <section class="sect">
@@ -441,5 +538,145 @@ p{margin:0 0 1.05em}
   </div>
 </footer>
 
+<script>
+(function(){
+  var MARKET = 10000, REF_PRICE = 400, START_CASH = 2000000, MONTHS = 12;
+  var FIXED = 120000, PER_TABLE = 1400, SEATS_PER_TABLE = 20;
+
+  var rivals = [
+    {id:'P2', color:'#3B82C4', price:350, q:5, ad:120000, tables:110},
+    {id:'P3', color:'#2E9E5B', price:420, q:7, ad:180000, tables:130},
+    {id:'P4', color:'#E0A030', price:300, q:4, ad:90000,  tables:100},
+    {id:'P5', color:'#8B5CC7', price:480, q:8, ad:200000, tables:120}
+  ];
+  var DEF = {price:380, q:6, ad:150000, tables:120};
+
+  var el = function(id){ return document.getElementById(id); };
+  var price = el('simPrice'), qual = el('simQual'), ad = el('simAd'), tables = el('simTables');
+  if(!price) return;
+  var outPrice = el('outPrice'), outQual = el('outQual'), outAd = el('outAd'), outTables = el('outTables');
+  var bars = el('simBars'), stats = el('simStats'), warn = el('simWarn');
+  var cashEl = el('simCash'), monthEl = el('simMonth'), verdict = el('simVerdict');
+  var btnNext = el('simNext'), btnReset = el('simReset');
+
+  var nf = new Intl.NumberFormat('ru-RU');
+  var money = function(v){ return nf.format(Math.round(v)) + ' \u20BD'; };
+  var cash = START_CASH, month = 1, done = false;
+
+  function attract(r){
+    return Math.pow(REF_PRICE / r.price, 1.6) *
+           Math.pow(r.q / 5, 1.1) *
+           (1 + 0.9 * Math.sqrt(r.ad / 150000));
+  }
+  function capacity(r){ return r.tables * SEATS_PER_TABLE; }
+  function unitCost(r){ return 40 + r.q * 16; }
+
+  function paintTrack(input){
+    var pct = (input.value - input.min) / (input.max - input.min) * 100;
+    input.style.background = 'linear-gradient(to right, #D8422A 0 ' + pct + '%, #3A3A46 ' + pct + '% 100%)';
+  }
+
+  function me(){
+    return {id:'P1', color:'#D8422A', price:+price.value, q:+qual.value, ad:+ad.value, tables:+tables.value};
+  }
+
+  function render(){
+    var p1 = me();
+    var all = [p1].concat(rivals);
+    var scores = all.map(attract);
+    var total = scores.reduce(function(a,b){ return a+b; }, 0);
+
+    var rows = all.map(function(r, i){
+      var share = scores[i] / total;
+      var demand = Math.round(MARKET * share);
+      return {id:r.id, color:r.color, share:share, demand:demand,
+              served:Math.min(demand, capacity(r)), me:i === 0};
+    });
+
+    bars.innerHTML = rows.map(function(r){
+      return '<div class="simbar' + (r.me ? ' simbar--me' : '') + '">' +
+             '<b>' + r.id + '</b>' +
+             '<div class="simbar__track"><div class="simbar__fill" style="width:' +
+               (r.share / 0.35 * 100).toFixed(1) + '%;background:' + r.color + '"></div></div>' +
+             '<span>' + Math.round(r.share * 100) + '%</span></div>';
+    }).join('');
+
+    var my = rows[0];
+    var cap = capacity(p1);
+    var revenue = my.served * p1.price;
+    var costVar = my.served * unitCost(p1);
+    var costHall = p1.tables * PER_TABLE;
+    var costs = costVar + costHall + p1.ad + FIXED;
+    var profit = revenue - costs;
+
+    stats.innerHTML =
+      row('Спрос на ваш ресторан', nf.format(my.demand)) +
+      row('Зал вмещает', nf.format(cap)) +
+      row('Клиентов обслужили', nf.format(my.served)) +
+      row('Выручка', money(revenue)) +
+      row('Расходы', money(costs)) +
+      row('Прибыль за месяц', (profit >= 0 ? '+' : '\u2212') + money(Math.abs(profit)),
+          profit >= 0 ? 'plus' : 'minus') +
+      row('Доля рынка', Math.round(my.served / MARKET * 100) + '%');
+
+    if(my.demand > cap){
+      warn.hidden = false;
+      warn.textContent = 'К вам хотели прийти ' + nf.format(my.demand) +
+        ' человек, а зал вмещает ' + nf.format(cap) +
+        '. Разницу забрали конкуренты. Реклама без пропускной способности создаёт очередь, которую некому обслужить.';
+    } else {
+      warn.hidden = true;
+    }
+
+    btnNext.disabled = done;
+    return profit;
+  }
+
+  function row(name, value, cls){
+    return '<div><dt>' + name + '</dt><dd' + (cls ? ' class="' + cls + '"' : '') + '>' + value + '</dd></div>';
+  }
+
+  function labels(){
+    outPrice.textContent = nf.format(price.value) + ' \u20BD';
+    outQual.textContent = qual.value + ' / 10';
+    outAd.textContent = nf.format(ad.value) + ' \u20BD';
+    outTables.textContent = tables.value;
+    [price, qual, ad, tables].forEach(paintTrack);
+  }
+
+  function update(){ labels(); render(); }
+
+  [price, qual, ad, tables].forEach(function(i){ i.addEventListener('input', update); });
+
+  btnNext.addEventListener('click', function(){
+    if(done) return;
+    cash += render();
+    month++;
+    if(month > MONTHS){
+      done = true;
+      month = MONTHS;
+      var delta = cash - START_CASH;
+      verdict.hidden = false;
+      verdict.textContent = delta >= 0
+        ? 'Игровой год закончен. Вы заработали ' + money(delta) + '. В живой игре рядом сидят люди, которые весь год мешали вам это сделать.'
+        : 'Игровой год закончен. Вы потеряли ' + money(Math.abs(delta)) + '. Здесь это стоило пары минут, в жизни — года и всех накоплений.';
+    }
+    monthEl.textContent = month;
+    cashEl.textContent = money(cash);
+    update();
+  });
+
+  btnReset.addEventListener('click', function(){
+    price.value = DEF.price; qual.value = DEF.q; ad.value = DEF.ad; tables.value = DEF.tables;
+    cash = START_CASH; month = 1; done = false;
+    verdict.hidden = true;
+    monthEl.textContent = month;
+    cashEl.textContent = money(cash);
+    update();
+  });
+
+  update();
+})();
+</script>
 </body>
 </html>
