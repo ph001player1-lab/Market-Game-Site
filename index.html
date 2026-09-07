@@ -46,7 +46,7 @@
     linear-gradient(90deg, rgba(242,241,236,.028) 1px, transparent 1px);
   --grid-size:112px 112px,112px 112px,28px 28px,28px 28px;
 
-  --pad:clamp(18px,5vw,72px);
+  --pad:clamp(26px,5.5vw,72px);
   --maxw:1160px;
 }
 *{box-sizing:border-box}
@@ -92,7 +92,7 @@ p{margin:0 0 1.05em}
 .bar a{font-size:14.5px;font-weight:700;letter-spacing:.005em;text-decoration:none;color:var(--ink);white-space:nowrap;border-bottom:2px solid var(--red);padding-bottom:2px}
 
 /* герой */
-.hero{padding:clamp(36px,5vw,64px) 0 clamp(40px,5vw,64px)}
+.hero{padding-top:clamp(36px,5vw,64px);padding-bottom:clamp(40px,5vw,64px)}
 .hero__in{display:grid;gap:clamp(28px,4vw,52px);align-items:center}
 @media(min-width:900px){.hero__in{grid-template-columns:minmax(0,1fr) minmax(0,.92fr)}}
 .hero h1{margin-bottom:20px}
@@ -126,8 +126,11 @@ p{margin:0 0 1.05em}
 @media(min-width:820px){.tools{grid-template-columns:repeat(4,1fr)}}
 .tools span{border:1.5px solid var(--ink);padding:15px 16px;font-weight:700;font-size:16px;letter-spacing:0;background:var(--paper)}
 .sect--tint .tools span{background:var(--paper-2)}
-.figure{border:2px solid var(--ink);background:#fff}
-.figcap{font-size:14px;color:var(--mute);margin-top:12px}
+.figure{border:2px solid var(--ink);background:#fff;line-height:0;margin:clamp(26px,4vw,42px) 0 0}
+.figure img{width:100%}
+.figure--mid{max-width:880px}
+.sect--dark .figure{border-color:rgba(242,241,236,.42)}
+.figcap{font-size:14px;color:var(--mute);margin-top:12px;line-height:1.5}
 
 /* карточки */
 .cards{display:grid;gap:14px;margin-top:clamp(26px,4vw,40px)}
@@ -217,7 +220,8 @@ p{margin:0 0 1.05em}
 
 <!-- ЧТО ЭТО -->
 <section class="sect sect--tint">
-  <div class="wrap split">
+  <div class="wrap">
+    <div class="split">
     <div>
       <span class="eyebrow">ЧТО ЭТО</span>
       <h2>Ваше решение. Ответ рынка.</h2>
@@ -228,6 +232,8 @@ p{margin:0 0 1.05em}
       <p>Вы видите свой отчёт: выручку, расходы, прибыль, остаток в кассе и долю рынка. Потом наступает следующий месяц.</p>
       <p>Через двенадцать месяцев побеждает тот, у кого больше денег в кассе. Не тот, кто убедительнее рассказал про свою стратегию.</p>
     </div>
+    </div>
+    <figure class="figure"><img src="one-market.jpg" width="1150" height="647" alt="Один рынок на всех: поток из 10 000 клиентов проходит через модель рынка и распределяется между конкурирующими ресторанами. Один ход равен одному месяцу, игровой год — двенадцать месяцев" loading="lazy"></figure>
   </div>
 </section>
 
@@ -236,6 +242,7 @@ p{margin:0 0 1.05em}
   <div class="wrap">
     <span class="eyebrow">КАК ПРОХОДИТ ИГРА</span>
     <h2>Правила осваиваются по ходу.<br>Ровно как в реальном бизнесе.</h2>
+    <figure class="figure" style="margin-bottom:clamp(30px,4.5vw,46px)"><img src="format.jpg" width="1150" height="647" alt="Формат игры: от 4 до 20 участников, игровой год из двенадцати месяцев, ход три-пять минут, онлайн или офлайн" loading="lazy"></figure>
     <div class="steps">
       <article><h3>Инструктажа не будет</h3><p>Вы садитесь и сразу играете. Механика становится понятной за первые месяцы — так же, как в бизнесе, где перед открытием никто не выдаёт инструкцию и права на ошибку не спрашивает.</p></article>
       <article><h3>Вы принимаете решения</h3><p>Три-пять минут на ход. Цена, качество, рекламные каналы и бюджет, столики, персонал, кредиты. Что делают конкуренты — вы не знаете.</p></article>
@@ -252,6 +259,7 @@ p{margin:0 0 1.05em}
   <div class="wrap">
     <span class="eyebrow">ВАШИ ИНСТРУМЕНТЫ</span>
     <h2>Что у вас под управлением</h2>
+    <figure class="figure" style="margin-bottom:clamp(30px,4.5vw,46px)"><img src="your-company.jpg" width="1150" height="647" alt="Вы управляете компанией: цена, качество, шесть каналов рекламы, рекламный бюджет, столики, сотрудники, кредиты и инвестиции" loading="lazy"></figure>
     <div class="tools">
       <span>Цена</span><span>Качество</span>
       <span>6 рекламных каналов</span><span>Рекламный бюджет</span>
@@ -264,7 +272,8 @@ p{margin:0 0 1.05em}
 
 <!-- ОБОЛОЧКА -->
 <section class="sect sect--dark">
-  <div class="wrap split">
+  <div class="wrap">
+    <div class="split">
     <div>
       <span class="eyebrow">ГЛАВНОЕ ПРО ИГРУ</span>
       <h2>Фудкорт — это просто оболочка</h2>
@@ -274,6 +283,9 @@ p{margin:0 0 1.05em}
       <p>Замените комплексный обед на подписку, монтаж окон, стрижку, юридические услуги, курс английского или партию товара из Китая — модель не изменится ни на шаг. Ограниченный спрос. Конкуренты, которые борются за тех же людей. Цена против качества. Реклама, которая может не окупиться. Мощность, упирающаяся в деньги. И кассовый разрыв, который наступает раньше прибыли.</p>
       <p>Фудкорт выбран потому, что его правила понятны за две минуты кому угодно, без отраслевого контекста. Дальше начинается ваш собственный бизнес — только без риска потерять на нём настоящие деньги.</p>
     </div>
+    </div>
+    <figure class="figure"><img src="market-calc.jpg" width="1150" height="561" alt="Рынок считает сам: компании принимают решения, модель просчитывает, 10 000 клиентов делятся между ресторанами, появляется месячный отчёт — выручка, расходы, прибыль, деньги в кассе и доля рынка" loading="lazy"></figure>
+    <p class="figcap">Одинаковая механика подходит любому бизнесу: меняется только вывеска.</p>
   </div>
 </section>
 
@@ -282,6 +294,7 @@ p{margin:0 0 1.05em}
   <div class="wrap">
     <span class="eyebrow">ЗАЧЕМ В НЕЁ ИГРАЮТ</span>
     <h2>Четыре инструмента в одном формате</h2>
+    <figure class="figure figure--mid" style="margin-bottom:clamp(30px,4.5vw,46px)"><img src="four-tools.jpg" width="953" height="720" alt="Четыре применения игры «Захвати рынок»: тренинг, ассессмент, диагностика и тренировка" loading="lazy"></figure>
     <div class="cards cards--4">
       <div class="card"><span class="card__tag">ТРЕНИНГ</span><p>Навыки отрабатываются в действии. Не конспект про юнит-экономику, а решение, которое через месяц обернулось убытком.</p></div>
       <div class="card"><span class="card__tag">АССЕССМЕНТ</span><p>За одну игру видно, как человек считает, решает при неполных данных и держит удар. Резюме такого не показывает.</p></div>
