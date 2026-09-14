@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chiếm Lĩnh Thị Trường — trò chơi mô phỏng kinh doanh của Nikolay Bulenkov</title>
+<meta name="description" content="Mô phỏng kinh doanh có điều phối: một thị trường chung, đối thủ thật, mười hai tháng trong trò chơi. Đào tạo, đánh giá năng lực và chẩn đoán quyết định quản trị trong cùng một định dạng.">
+<meta name="theme-color" content="#F2F1EC">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://marketgame.club/vi/">
+
+<link rel="alternate" hreflang="ru" href="https://marketgame.club/">
+<link rel="alternate" hreflang="en" href="https://marketgame.club/en/">
+<link rel="alternate" hreflang="vi" href="https://marketgame.club/vi/">
+<link rel="alternate" hreflang="x-default" href="https://marketgame.club/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Chiếm Lĩnh Thị Trường — mô phỏng kinh doanh">
+<meta property="og:description" content="Một năm kinh doanh gói trong một ván chơi: một thị trường chung, đối thủ thật, và tiền mặt trong két là trọng tài duy nhất.">
+<meta property="og:image" content="https://marketgame.club/og.jpg">
+<meta property="og:url" content="https://marketgame.club/vi/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="wrap">
+  <div class="bar">
+    <div class="logo">Chiếm lĩnh<br><em>thị trường</em></div>
+    <div class="bar__right">
+      <nav class="lang" aria-label="Ngôn ngữ trang">
+        <a href="../" lang="ru" hreflang="ru" title="Русский">RU</a>
+        <a href="../en/" lang="en" hreflang="en" title="English">EN</a>
+        <span aria-current="page">VI</span>
+      </nav>
+      <a class="bar__tg" href="https://t.me/Market_Game_by_Nickbv">Lịch chơi trên Telegram</a>
+    </div>
+  </div>
+</header>
+
+<!-- MỞ ĐẦU -->
+<section class="wrap hero">
+  <div class="hero__in">
+    <div>
+      <span class="eyebrow">MÔ PHỎNG KINH DOANH CÓ ĐIỀU PHỐI</span>
+      <h1>Chiếm lĩnh<span>thị trường</span></h1>
+      <p class="lede">Một năm kinh doanh gói trong một ván chơi. Một thị trường chung cho tất cả, đối thủ thật ngồi ngay bàn bên, và tiền mặt trong két là trọng tài duy nhất.</p>
+      <div class="btns">
+        <a class="btn" href="https://t.me/Market_Game_by_Nickbv">Đăng ký tham gia</a>
+      </div>
+      <p class="undercta">Lịch các ván chơi mở gần nhất được đăng trong nhóm Telegram. Bạn cũng có thể hỏi bất cứ điều gì ở đó.</p>
+    </div>
+    <div class="hero__pic">
+      <img src="../hero.jpg" width="820" height="719" alt="Sơ đồ trò chơi: dòng khách của trung tâm thương mại được phân bổ giữa các nhà hàng cạnh tranh trong khu ẩm thực" fetchpriority="high">
+    </div>
+  </div>
+
+  <dl class="specs">
+    <div><dt>NGƯỜI CHƠI</dt><dd>4—20</dd></div>
+    <div><dt>NĂM TRONG GAME</dt><dd>12 tháng</dd></div>
+    <div><dt>MỖI LƯỢT</dt><dd>3—5 phút</dd></div>
+    <div><dt>HÌNH THỨC</dt><dd>Trực tuyến hoặc trực tiếp</dd></div>
+  </dl>
+  <p class="specnote">Nhóm đông sẽ chơi theo đội: vài người cùng điều hành một công ty và phải thống nhất với nhau trong đúng ba đến năm phút đó. Điều này thêm một lớp nữa cho trò chơi — đàm phán ngay trong đội của mình.</p>
+</section>
+
+<!-- ĐÂY LÀ GÌ -->
+<section class="sect sect--tint">
+  <div class="wrap">
+    <div class="split">
+    <div>
+      <span class="eyebrow">ĐÂY LÀ GÌ</span>
+      <h2>Quyết định của bạn. Câu trả lời của thị trường.</h2>
+    </div>
+    <div class="prose">
+      <p>Vài công ty cùng ngồi vào một thị trường và bắt đầu giành cùng một nhóm khách hàng. Mỗi lượt là một tháng trong trò chơi. Bạn đặt giá, đầu tư vào chất lượng, chọn kênh quảng cáo, kê thêm bàn, tuyển người, vay vốn.</p>
+      <p>Sau đó thị trường tự tính. Mười nghìn khách hàng được phân bổ giữa tất cả người chơi — không chia đều, mà tùy vào việc tổ hợp giá, chất lượng, quảng cáo và sức phục vụ của ai hấp dẫn hơn với họ. Điều đó do mô hình quyết định, không phải người điều phối.</p>
+      <p>Bạn nhận báo cáo của riêng mình: doanh thu, chi phí, lợi nhuận, tiền còn trong két và thị phần. Rồi tháng tiếp theo bắt đầu.</p>
+      <p>Sau mười hai tháng, người thắng là người có nhiều tiền mặt nhất trong két. Không phải người kể về chiến lược của mình thuyết phục nhất.</p>
+    </div>
+    </div>
+    <figure class="figure"><img src="../one-market.jpg" width="1150" height="647" alt="Một thị trường chung: dòng 10.000 khách hàng đi qua mô hình thị trường và được phân bổ giữa các nhà hàng cạnh tranh. Một lượt bằng một tháng, một năm trong game là mười hai tháng" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- MÔ HÌNH THỊ TRƯỜNG -->
+<section class="sect sect--dark" id="model">
+  <div class="wrap">
+    <span class="eyebrow">MÔ HÌNH THỊ TRƯỜNG</span>
+    <h2>Xem nó vận hành thế nào</h2>
+    <div class="prose" style="max-width:76ch">
+      <p>Đây là toàn bộ trò chơi trên một màn hình. Hãy hình dung nhà hàng màu đỏ chính là bạn. Hạ giá — khách kéo đến, nhưng mỗi hóa đơn mỏng đi. Nâng chất lượng — khách quay lại, bạn giữ được giá cao hơn. Đổ tiền vào quảng cáo — độ nhận biết tăng, nhưng tiền đã rời két ngay lúc này.</p>
+      <p>Kéo các cần gạt — giá, chất lượng, quảng cáo, số bàn — và thấy ngay khách hàng dịch chuyển giữa năm nhà hàng ra sao, cuối cùng bạn còn lại gì: doanh thu, lợi nhuận, thị phần. Không ai chấm điểm. Chỉ thị trường tính. Trong ván chơi thật cũng vậy — chỉ khác là mười hai tháng liên tiếp và ở bàn bên là những người chơi như bạn. Ở đây các con số được đơn giản hóa, nhưng logic thì đúng y như vậy.</p>
+    </div>
+
+    <div class="sim">
+      <div class="sim__panel">
+        <h3 class="sim__t">Nhà hàng của bạn · P1</h3>
+        <p class="sim__sub">Màu đỏ trên biểu đồ là bạn</p>
+
+        <div class="sim__row">
+          <label for="simPrice">Giá hóa đơn trung bình</label><output id="outPrice">38.000 ₫</output>
+          <input type="range" id="simPrice" min="25000" max="60000" step="1000" value="38000" aria-describedby="outPrice">
+        </div>
+        <div class="sim__row">
+          <label for="simQual">Chất lượng</label><output id="outQual">6 / 10</output>
+          <input type="range" id="simQual" min="1" max="10" step="1" value="6" aria-describedby="outQual">
+        </div>
+        <div class="sim__row">
+          <label for="simAd">Ngân sách quảng cáo</label><output id="outAd">15.000.000 ₫</output>
+          <input type="range" id="simAd" min="0" max="40000000" step="1000000" value="15000000" aria-describedby="outAd">
+        </div>
+        <div class="sim__row">
+          <label for="simTables">Số bàn (sức chứa)</label><output id="outTables">120</output>
+          <input type="range" id="simTables" min="60" max="220" step="5" value="120" aria-describedby="outTables">
+        </div>
+
+        <div class="sim__btns">
+          <button type="button" class="btn" id="simNext">Tháng tiếp theo →</button>
+          <button type="button" class="btn btn--line" id="simReset">Đặt lại</button>
+        </div>
+
+        <p class="sim__cashlab" id="simCashLab">Tiền trong két · tháng 1 / 12</p>
+        <p class="sim__cash" id="simCash">200.000.000 ₫</p>
+        <p class="sim__verdict" id="simVerdict" hidden></p>
+      </div>
+
+      <div class="sim__panel">
+        <h3 class="sim__t">10.000 khách hàng đi về đâu</h3>
+        <p class="sim__sub">Khách đến nơi có giá tốt hơn và ngon hơn</p>
+        <div class="sim__bars" id="simBars"></div>
+        <dl class="sim__stats" id="simStats"></dl>
+        <p class="sim__warn" id="simWarn" hidden></p>
+      </div>
+    </div>
+    <p class="figcap">Ở đây các đối thủ đứng yên. Trong ván chơi thật, họ đi cùng lúc với bạn, và điều đó thay đổi tất cả.</p>
+  </div>
+</section>
+
+
+<!-- VÁN CHƠI DIỄN RA THẾ NÀO -->
+<section class="sect">
+  <div class="wrap">
+    <span class="eyebrow">VÁN CHƠI DIỄN RA THẾ NÀO</span>
+    <h2>Luật được nắm ngay trong lúc chơi.<br>Đúng như trong kinh doanh thật.</h2>
+    <figure class="figure" style="margin-bottom:clamp(30px,4.5vw,46px)"><img src="../format.jpg" width="1150" height="647" alt="Định dạng trò chơi: từ 4 đến 20 người tham gia, một năm gồm mười hai tháng, mỗi lượt ba đến năm phút, trực tuyến hoặc trực tiếp" loading="lazy"></figure>
+    <div class="steps">
+      <article><h3>Sẽ không có phần hướng dẫn</h3><p>Bạn ngồi xuống và chơi ngay. Cơ chế trở nên rõ ràng sau vài tháng đầu — hệt như trong kinh doanh, nơi trước ngày khai trương không ai phát cho bạn bản hướng dẫn và cũng không hỏi bạn có quyền sai hay không.</p></article>
+      <article><h3>Bạn ra quyết định</h3><p>Ba đến năm phút cho mỗi lượt. Giá, chất lượng, kênh và ngân sách quảng cáo, số bàn, nhân sự, các khoản vay. Đối thủ đang làm gì, bạn không biết.</p></article>
+      <article><h3>Thị trường tính toán</h3><p>Mô hình phân bổ khách hàng giữa tất cả người chơi và tính lại tiền. Không có điểm số hay thiên vị của người điều phối — chỉ có kinh tế.</p></article>
+      <article><h3>Bạn thấy kết quả</h3><p>Báo cáo về công ty của bạn: doanh thu, chi phí, lợi nhuận, tiền mặt, thị phần. Và bảng chung cho thấy ai đang dẫn trước.</p></article>
+      <article><h3>Tháng tiếp theo</h3><p>Chiến lược bộc lộ qua một chuỗi lượt đi, chứ không qua một lượt. Sai lầm ở tháng thứ ba đuổi kịp bạn ở tháng thứ bảy, và đó là điều hữu ích nhất mà mô phỏng mang lại.</p></article>
+      <article><h3>Tổng kết cuối ván</h3><p>Sau tháng thứ mười hai, chúng ta cùng phân tích ai đã làm gì và vì sao kết quả lại như vậy. Phần học chính diễn ra ở đây.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- CÔNG CỤ -->
+<section class="sect sect--tint">
+  <div class="wrap">
+    <span class="eyebrow">CÔNG CỤ CỦA BẠN</span>
+    <h2>Những gì bạn nắm trong tay</h2>
+    <figure class="figure" style="margin-bottom:clamp(30px,4.5vw,46px)"><img src="../your-company.jpg" width="1150" height="647" alt="Bạn điều hành một công ty: giá, chất lượng, sáu kênh quảng cáo, ngân sách quảng cáo, số bàn, nhân viên, các khoản vay và đầu tư" loading="lazy"></figure>
+    <div class="tools">
+      <span>Giá</span><span>Chất lượng</span>
+      <span>6 kênh quảng cáo</span><span>Ngân sách quảng cáo</span>
+      <span>Số lượng bàn</span><span>Nhân viên</span>
+      <span>Khoản vay</span><span>Đầu tư</span>
+    </div>
+    <p class="mute" style="margin-top:24px;font-size:16.5px;max-width:74ch">Không công cụ nào tự nó phát huy tác dụng. Giá thấp mà thiếu chất lượng sẽ mang về những khách không bao giờ quay lại. Quảng cáo mà thiếu sức phục vụ chỉ tạo ra hàng dài không ai phục vụ nổi. Khoản vay bịt được một lỗ hổng dòng tiền và tạo ra một lỗ hổng mới.</p>
+  </div>
+</section>
+
+<!-- LỚP VỎ -->
+<section class="sect sect--dark">
+  <div class="wrap">
+    <div class="split">
+    <div>
+      <span class="eyebrow">ĐIỀU QUAN TRỌNG NHẤT</span>
+      <h2>Khu ẩm thực chỉ là lớp vỏ</h2>
+    </div>
+    <div class="prose">
+      <p>Trong trò chơi, bạn điều hành một nhà hàng ở khu ẩm thực. Điều đó không có nghĩa trò chơi nói về nhà hàng.</p>
+      <p>Hãy thay suất cơm trưa bằng gói thuê bao, dịch vụ lắp cửa, một lần cắt tóc, dịch vụ pháp lý, một khóa tiếng Anh hay một lô hàng từ Trung Quốc — mô hình không thay đổi một bước nào. Nhu cầu có hạn. Đối thủ giành cùng một nhóm người. Giá đối đầu với chất lượng. Quảng cáo có thể không hoàn vốn. Công suất bị chặn bởi tiền. Và lỗ hổng dòng tiền đến trước cả lợi nhuận.</p>
+      <p>Khu ẩm thực được chọn vì luật chơi của nó ai cũng hiểu trong hai phút, không cần bối cảnh ngành. Sau đó là công việc kinh doanh của chính bạn — chỉ khác là không có rủi ro mất tiền thật.</p>
+    </div>
+    </div>
+    <figure class="figure"><img src="../market-calc.jpg" width="1150" height="561" alt="Thị trường tự tính: các công ty ra quyết định, mô hình tính toán, 10.000 khách hàng được chia giữa các nhà hàng, rồi xuất hiện báo cáo tháng — doanh thu, chi phí, lợi nhuận, tiền trong két và thị phần" loading="lazy"></figure>
+    <p class="figcap">Cùng một cơ chế phù hợp với mọi ngành kinh doanh: chỉ tấm biển hiệu là thay đổi.</p>
+  </div>
+</section>
+
+<!-- BỐN ỨNG DỤNG -->
+<section class="sect">
+  <div class="wrap">
+    <span class="eyebrow">VÌ SAO NGƯỜI TA CHƠI</span>
+    <h2>Bốn công cụ trong một định dạng</h2>
+    <figure class="figure figure--mid" style="margin-bottom:clamp(30px,4.5vw,46px)"><img src="../four-tools.jpg" width="953" height="720" alt="Bốn ứng dụng của trò chơi Chiếm Lĩnh Thị Trường: đào tạo, đánh giá năng lực, chẩn đoán và luyện tập" loading="lazy"></figure>
+    <div class="cards cards--4">
+      <div class="card"><span class="card__tag">ĐÀO TẠO</span><p>Kỹ năng được rèn qua hành động. Không phải bài ghi chép về unit economics, mà là một quyết định sau một tháng hóa thành khoản lỗ.</p></div>
+      <div class="card"><span class="card__tag">ĐÁNH GIÁ NĂNG LỰC</span><p>Chỉ một ván chơi đã thấy rõ một người tính toán ra sao, quyết định thế nào khi thiếu dữ liệu và chịu đòn ra sao. Hồ sơ xin việc không cho thấy điều đó.</p></div>
+      <div class="card"><span class="card__tag">CHẨN ĐOÁN</span><p>Thói quen quản trị lộ ra ngay từ những lượt đầu. Bạn sẽ tự thấy điểm mạnh và điểm yếu của mình, không cần ai chấm điểm.</p></div>
+      <div class="card"><span class="card__tag">LUYỆN TẬP</span><p>Trò chơi có thể lặp lại: đổi chiến lược, thử cách khác và so sánh kết quả trên cùng một mô hình.</p></div>
+    </div>
+
+    <h2 style="margin-top:clamp(44px,6vw,72px)">Một ván chơi cho thấy gì về một con người</h2>
+    <ul class="seen">
+      <li>Tính toán kinh tế hay làm theo cảm tính</li>
+      <li>Làm gì khi lần đầu thua lỗ</li>
+      <li>Có hoảng loạn phá giá khi mất khách hay không</li>
+      <li>Có vay vốn khi hoàn toàn có thể không vay hay không</li>
+      <li>Có nhận ra quảng cáo đang không hoàn vốn hay không</li>
+      <li>Có biết dừng lại và tính lại hay không</li>
+      <li>Phản ứng thế nào khi bị đối thủ vượt mặt</li>
+      <li>Sẵn sàng đổi chiến lược hay bám chặt phương án đầu tiên</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PHÙ HỢP VỚI AI -->
+<section class="sect sect--tint">
+  <div class="wrap">
+    <span class="eyebrow">PHÙ HỢP VỚI AI</span>
+    <h2>Những ai thường ngồi vào bàn chơi</h2>
+    <div class="cards cards--4">
+      <div class="card"><h3>Chủ doanh nghiệp</h3><p>Kiểm chứng chiến lược và thói quen quản trị ở nơi mà sai lầm chỉ tốn điểm số.</p></div>
+      <div class="card"><h3>Lãnh đạo và đội nhóm</h3><p>Thấy rõ đội của mình ra quyết định thế nào dưới áp lực và giới hạn thời gian.</p></div>
+      <div class="card"><h3>Nhân sự và L&amp;D</h3><p>Đánh giá năng lực và đào tạo trong cùng một sự kiện, với hành vi quan sát được thay cho bảng hỏi.</p></div>
+      <div class="card"><h3>Người đang chuẩn bị khởi nghiệp</h3><p>Hiểu cái giá của những sai lầm điển hình trước khi phải trả bằng tiền của mình.</p></div>
+    </div>
+
+    <h2 style="margin-top:clamp(44px,6vw,72px)">Hai hình thức</h2>
+    <div class="cards cards--2">
+      <div class="card">
+        <span class="card__tag">VÁN CHƠI MỞ</span>
+        <h3>Đến một mình</h3>
+        <p>Bạn chơi với những người không quen — như vậy công bằng và thú vị hơn. Lịch các ván chơi gần nhất được đăng trong nhóm Telegram.</p>
+        <div class="btns" style="margin-top:20px"><a class="btn" href="https://t.me/Market_Game_by_Nickbv">Đăng ký tham gia</a></div>
+      </div>
+      <div class="card">
+        <span class="card__tag">HÌNH THỨC DOANH NGHIỆP</span>
+        <h3>Đội của bạn cùng chơi</h3>
+        <p>Tối đa hai mươi người, có thể chia thành các đội vài người cho mỗi công ty. Thiết lập thị trường và phần tổng kết cuối ván được điều chỉnh theo bài toán của doanh nghiệp.</p>
+        <div class="btns" style="margin-top:20px"><a class="btn btn--line" href="https://t.me/nickbv">Trao đổi về ván chơi doanh nghiệp</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÁC GIẢ -->
+<section class="sect">
+  <div class="wrap">
+    <span class="eyebrow">TÁC GIẢ TRÒ CHƠI</span>
+    <div class="author">
+      <div>
+        <img class="author__photo" src="../author.jpg" width="560" height="700" alt="Nikolay Vladimirovich Bulenkov" loading="lazy">
+      </div>
+      <div>
+        <h2 style="margin-bottom:.3em">Nikolay Vladimirovich Bulenkov</h2>
+        <p class="lede">Người sáng tạo các trò chơi kinh doanh có điều phối và các chương trình đào tạo doanh nghiệp. Hơn hai mươi năm trong bán hàng, quản trị và phát triển kinh doanh.</p>
+        <ul class="regs">
+          <li>
+            <b>2014</b>
+            <div>
+              <p>Tạo ra trò chơi «Mô phỏng thương vụ» — công cụ huấn luyện cho môi giới bất động sản. Được MAUA, công đoàn môi giới bất động sản đầu tiên của Nga, bình chọn là công cụ đào tạo môi giới hữu ích nhất nước Nga năm 2014.</p>
+              <a class="cert" href="../cert.jpg" target="_blank" rel="noopener">
+                <img src="../cert.jpg" width="1200" height="799" alt="Chứng nhận của MAUA: Nikolay Bulenkov đã tạo ra công cụ đào tạo môi giới bất động sản hữu ích nhất nước Nga năm 2014 — trò chơi «Mô phỏng thương vụ»" loading="lazy">
+              </a>
+              <span class="viscap">Nhấn để mở toàn bộ chứng nhận</span>
+            </div>
+          </li>
+          <li>
+            <b>2017—2019</b>
+            <div>
+              <p>Giám đốc kinh doanh của Like Center (Ayaz Shabutdinov). Theo kết quả năm 2019, công ty dẫn đầu bảng xếp hạng các trường trực tuyến dành cho doanh nhân, vượt qua Skolkovo, Học viện Kinh doanh EY và học viện PwC.</p>
+              <img class="orglogo orglogo--like" src="../logo-like.png" width="194" height="88" alt="Like Center" loading="lazy">
+            </div>
+          </li>
+          <li>
+            <b>2019—2021</b>
+            <div>
+              <p>Trưởng trung tâm đào tạo của dự án «33 slona» thuộc Mail.ru&nbsp;Group.</p>
+              <img class="orglogo orglogo--mail" src="../logo-mailru.png" width="187" height="60" alt="Mail.ru Group" loading="lazy">
+            </div>
+          </li>
+          <li>
+            <b>Thực tiễn</b>
+            <div><p>Tăng tổng doanh thu của khối từ 130 lên 900 triệu ₽. Quản lý phát triển mạng lưới 21 văn phòng bất động sản. Triển khai CRM và ERP, giúp tăng gấp đôi thời gian làm việc hiệu quả của đội ngũ quản lý.</p></div>
+          </li>
+          <li>
+            <b>Học vấn</b>
+            <div><p>Đại học Kỹ thuật Quốc gia Moscow mang tên N. E. Bauman, chuyên ngành hệ thống và thiết bị điện tử vô tuyến.</p></div>
+          </li>
+        </ul>
+
+        <div class="offer">
+          <h3>Ngoài trò chơi — tracking và tư vấn</h3>
+          <p>Trò chơi cho thấy bạn ra quyết định thế nào. Tracking và tư vấn là làm việc trực tiếp với doanh nghiệp thật của bạn: rà soát định kỳ các đầu việc, chỉ số và bước tiếp theo.</p>
+          <div class="btns" style="margin-top:18px">
+            <a class="btn btn--line" href="https://t.me/nickbv">Đặt dịch vụ tracking</a>
+            <a class="btn btn--line" href="https://t.me/nickbv">Đặt dịch vụ tư vấn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NHÓM TELEGRAM -->
+<section class="sect sect--tint">
+  <div class="wrap">
+    <div class="tg split" style="align-items:center">
+      <div>
+        <span class="eyebrow">NHÓM TELEGRAM</span>
+        <h2 style="margin-bottom:.35em">Lịch chơi và mọi câu hỏi</h2>
+      </div>
+      <div>
+        <p class="mute" style="font-size:16.5px">Nhóm đăng lịch các ván chơi mở gần nhất, và bạn cũng có thể hỏi về hình thức, cách tham gia và các buổi chơi cho doanh nghiệp. Tham gia nhóm hoàn toàn tự do.</p>
+        <div class="btns"><a class="btn" href="https://t.me/Market_Game_by_Nickbv">Mở nhóm</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KẾT -->
+<section class="sect sect--dark final">
+  <div class="wrap">
+    <span class="eyebrow">NƯỚC ĐI TIẾP THEO</span>
+    <h2>Mười hai tháng kinh doanh đang chờ bạn tại một chiếc bàn</h2>
+    <p class="lede">Sai lầm ở đây chỉ tốn điểm số. Mọi thứ còn lại đúng như ngoài đời.</p>
+    <div class="btns" style="margin-top:30px">
+      <a class="btn" href="https://t.me/Market_Game_by_Nickbv">Đăng ký tham gia</a>
+      <a class="btn btn--line" href="https://t.me/nickbv">Nhắn cho tác giả</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="foot">
+    <span>«Chiếm Lĩnh Thị Trường» · trò chơi mô phỏng kinh doanh của Nikolay Bulenkov</span>
+    <span>Trò chơi · tracking · tư vấn</span>
+  </div>
+</footer>
+
+<script>
+window.SIM_CONFIG = {
+  locale: 'vi-VN', currency: 'VND', priceDecimals: 0,
+  refPrice: 40000, startCash: 200000000, fixed: 12000000, perTable: 140000,
+  adReference: 15000000, unitBase: 4000, unitPerQuality: 1600,
+  rivals: [
+    {id:'P2', color:'#3B82C4', price:35000, q:5, ad:12000000, tables:110},
+    {id:'P3', color:'#2E9E5B', price:42000, q:7, ad:18000000, tables:130},
+    {id:'P4', color:'#E0A030', price:30000, q:4, ad:9000000,  tables:100},
+    {id:'P5', color:'#8B5CC7', price:48000, q:8, ad:20000000, tables:120}
+  ],
+  text: {
+    demand:   'Nhu cầu vào nhà hàng của bạn',
+    capacity: 'Sức chứa của quán',
+    served:   'Số khách đã phục vụ',
+    revenue:  'Doanh thu',
+    costs:    'Chi phí',
+    profit:   'Lợi nhuận trong tháng',
+    share:    'Thị phần',
+    qualValue:'{n} / 10',
+    cashLine: 'Tiền trong két · tháng {m} / {t}',
+    warn:     'Có {demand} người muốn đến chỗ bạn, nhưng quán chỉ chứa được {cap}. Phần chênh lệch đã bị đối thủ lấy mất. Quảng cáo mà không có sức phục vụ chỉ tạo ra hàng người xếp hàng mà không ai phục vụ nổi.',
+    verdictWin:  'Năm trong trò chơi đã kết thúc. Bạn kiếm được {n}. Trong ván chơi thật, ngồi cạnh bạn là những người suốt cả năm tìm cách cản bạn làm điều đó.',
+    verdictLose: 'Năm trong trò chơi đã kết thúc. Bạn mất {n}. Ở đây cái giá chỉ là vài phút, ngoài đời là cả một năm và toàn bộ tiền tiết kiệm.'
+  }
+};
+</script>
+<script src="../sim.js"></script>
+</body>
+</html>

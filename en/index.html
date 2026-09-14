@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capture the Market — a business simulation by Nikolay Bulenkov</title>
+<meta name="description" content="A facilitated business simulation: one market, live competitors, twelve game months. Training, assessment and diagnostics of managerial decisions in a single format.">
+<meta name="theme-color" content="#F2F1EC">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://marketgame.club/en/">
+
+<link rel="alternate" hreflang="ru" href="https://marketgame.club/">
+<link rel="alternate" hreflang="en" href="https://marketgame.club/en/">
+<link rel="alternate" hreflang="vi" href="https://marketgame.club/vi/">
+<link rel="alternate" hreflang="x-default" href="https://marketgame.club/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Capture the Market — business simulation">
+<meta property="og:description" content="A year of business in one game: one shared market, live competitors, and cash in the register as the only judge.">
+<meta property="og:image" content="https://marketgame.club/og.jpg">
+<meta property="og:url" content="https://marketgame.club/en/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="wrap">
+  <div class="bar">
+    <div class="logo">Capture<br><em>the Market</em></div>
+    <div class="bar__right">
+      <nav class="lang" aria-label="Site language">
+        <a href="../" lang="ru" hreflang="ru" title="Русский">RU</a>
+        <span aria-current="page">EN</span>
+        <a href="../vi/" lang="vi" hreflang="vi" title="Tiếng Việt">VI</a>
+      </nav>
+      <a class="bar__tg" href="https://t.me/Market_Game_by_Nickbv">Game schedule on Telegram</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="wrap hero">
+  <div class="hero__in">
+    <div>
+      <span class="eyebrow">FACILITATED BUSINESS SIMULATION</span>
+      <h1>Capture<span>the Market</span></h1>
+      <p class="lede">A year of business in a single game. One market shared by everyone, live competitors at the next table, and cash in the register as the only judge.</p>
+      <div class="btns">
+        <a class="btn" href="https://t.me/Market_Game_by_Nickbv">Join a game</a>
+      </div>
+      <p class="undercta">The schedule of upcoming open games is in the Telegram group. You can ask anything there too.</p>
+    </div>
+    <div class="hero__pic">
+      <img src="../hero.jpg" width="820" height="719" alt="Game diagram: the flow of shopping mall customers is distributed among competing food court restaurants" fetchpriority="high">
+    </div>
+  </div>
+
+  <dl class="specs">
+    <div><dt>PLAYERS</dt><dd>4—20</dd></div>
+    <div><dt>GAME YEAR</dt><dd>12 months</dd></div>
+    <div><dt>TURN</dt><dd>3—5 minutes</dd></div>
+    <div><dt>FORMAT</dt><dd>Online or offline</dd></div>
+  </dl>
+  <p class="specnote">Large groups play in teams: several people run one company and have to agree among themselves within the same three to five minutes. That adds another layer to the game — negotiating inside your own team.</p>
+</section>
+
+<!-- WHAT IT IS -->
+<section class="sect sect--tint">
+  <div class="wrap">
+    <div class="split">
+    <div>
+      <span class="eyebrow">WHAT IT IS</span>
+      <h2>Your decision. The market's answer.</h2>
+    </div>
+    <div class="prose">
+      <p>Several companies sit down around one market and start competing for the same customers. Each turn is a game month. You set the price, invest in quality, choose advertising channels, add tables, hire people, take out a loan.</p>
+      <p>Then the market does the maths on its own. Ten thousand customers are distributed among all the players — not evenly, but depending on whose combination of price, quality, advertising and capacity looks more attractive to them. That is decided by the model, not by the facilitator.</p>
+      <p>You get your own report: revenue, costs, profit, cash on hand and market share. Then the next month begins.</p>
+      <p>After twelve months, the winner is whoever has the most cash in the register. Not whoever told the most convincing story about their strategy.</p>
+    </div>
+    </div>
+    <figure class="figure"><img src="../one-market.jpg" width="1150" height="647" alt="One market for everyone: a flow of 10,000 customers passes through the market model and is distributed among competing restaurants. One turn equals one month, a game year is twelve months" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- MARKET MODEL -->
+<section class="sect sect--dark" id="model">
+  <div class="wrap">
+    <span class="eyebrow">THE MARKET MODEL</span>
+    <h2>See how it works</h2>
+    <div class="prose" style="max-width:76ch">
+      <p>Here is the whole game on one screen. Imagine the red restaurant is you. Drop the price and the flow comes your way, but every bill gets thinner. Raise quality and people come back, so you can hold a higher price. Pour money into advertising and awareness grows, but the cash leaves the register right now.</p>
+      <p>Move the levers — price, quality, advertising, seating — and watch customers flow between the five restaurants and what is left for you in the end: revenue, profit, market share. Nobody hands out grades. Only the market counts. A live game works the same way — just twelve months in a row, with players like you at the next table. The numbers here are simplified, but the logic is exactly the same.</p>
+    </div>
+
+    <div class="sim">
+      <div class="sim__panel">
+        <h3 class="sim__t">Your restaurant · P1</h3>
+        <p class="sim__sub">The red one on the chart is you</p>
+
+        <div class="sim__row">
+          <label for="simPrice">Average bill</label><output id="outPrice">$9.50</output>
+          <input type="range" id="simPrice" min="6.25" max="15" step="0.25" value="9.5" aria-describedby="outPrice">
+        </div>
+        <div class="sim__row">
+          <label for="simQual">Quality</label><output id="outQual">6 / 10</output>
+          <input type="range" id="simQual" min="1" max="10" step="1" value="6" aria-describedby="outQual">
+        </div>
+        <div class="sim__row">
+          <label for="simAd">Advertising budget</label><output id="outAd">$3,750</output>
+          <input type="range" id="simAd" min="0" max="10000" step="250" value="3750" aria-describedby="outAd">
+        </div>
+        <div class="sim__row">
+          <label for="simTables">Tables (capacity)</label><output id="outTables">120</output>
+          <input type="range" id="simTables" min="60" max="220" step="5" value="120" aria-describedby="outTables">
+        </div>
+
+        <div class="sim__btns">
+          <button type="button" class="btn" id="simNext">Next month →</button>
+          <button type="button" class="btn btn--line" id="simReset">Reset</button>
+        </div>
+
+        <p class="sim__cashlab" id="simCashLab">Cash in the register · month 1 of 12</p>
+        <p class="sim__cash" id="simCash">$50,000</p>
+        <p class="sim__verdict" id="simVerdict" hidden></p>
+      </div>
+
+      <div class="sim__panel">
+        <h3 class="sim__t">Where the 10,000 customers go</h3>
+        <p class="sim__sub">Customers go where it is cheaper and tastier</p>
+        <div class="sim__bars" id="simBars"></div>
+        <dl class="sim__stats" id="simStats"></dl>
+        <p class="sim__warn" id="simWarn" hidden></p>
+      </div>
+    </div>
+    <p class="figcap">The competitors here stand still. In a live game they move at the same time as you, and that changes everything.</p>
+  </div>
+</section>
+
+
+<!-- HOW IT RUNS -->
+<section class="sect">
+  <div class="wrap">
+    <span class="eyebrow">HOW THE GAME RUNS</span>
+    <h2>You learn the rules as you go.<br>Exactly like real business.</h2>
+    <figure class="figure" style="margin-bottom:clamp(30px,4.5vw,46px)"><img src="../format.jpg" width="1150" height="647" alt="Game format: 4 to 20 participants, a game year of twelve months, a turn of three to five minutes, online or offline" loading="lazy"></figure>
+    <div class="steps">
+      <article><h3>There will be no briefing</h3><p>You sit down and start playing straight away. The mechanics become clear within the first few months — just like in business, where nobody hands you a manual before opening and nobody asks whether you are allowed to make mistakes.</p></article>
+      <article><h3>You make the decisions</h3><p>Three to five minutes per turn. Price, quality, advertising channels and budget, tables, staff, loans. What your competitors are doing, you do not know.</p></article>
+      <article><h3>The market counts</h3><p>The model distributes customers among all the players and recalculates the money. No grades from the facilitator and no sympathies — only economics.</p></article>
+      <article><h3>You see the result</h3><p>A report on your company: revenue, costs, profit, cash, market share. Plus a shared table showing who has pulled ahead.</p></article>
+      <article><h3>Next month</h3><p>Strategy shows itself across a series of turns, not in a single one. A mistake in month three catches up with you in month seven, and that is the most useful thing a simulation gives you.</p></article>
+      <article><h3>The final debrief</h3><p>After the twelfth month we go through who did what and why it turned out this way. This is where most of the learning happens.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUMENTS -->
+<section class="sect sect--tint">
+  <div class="wrap">
+    <span class="eyebrow">YOUR INSTRUMENTS</span>
+    <h2>What you have at your control</h2>
+    <figure class="figure" style="margin-bottom:clamp(30px,4.5vw,46px)"><img src="../your-company.jpg" width="1150" height="647" alt="You run a company: price, quality, six advertising channels, advertising budget, tables, staff, loans and investments" loading="lazy"></figure>
+    <div class="tools">
+      <span>Price</span><span>Quality</span>
+      <span>6 advertising channels</span><span>Advertising budget</span>
+      <span>Number of tables</span><span>Staff</span>
+      <span>Loans</span><span>Investments</span>
+    </div>
+    <p class="mute" style="margin-top:24px;font-size:16.5px;max-width:74ch">No instrument works on its own. A low price without quality brings customers who never come back. Advertising without capacity brings a queue nobody can serve. A loan closes one cash gap and creates another.</p>
+  </div>
+</section>
+
+<!-- THE SHELL -->
+<section class="sect sect--dark">
+  <div class="wrap">
+    <div class="split">
+    <div>
+      <span class="eyebrow">THE MAIN THING ABOUT THE GAME</span>
+      <h2>The food court is just a shell</h2>
+    </div>
+    <div class="prose">
+      <p>In the game you run a restaurant in a food court. That does not mean the game is about restaurants.</p>
+      <p>Replace the set lunch with a subscription, window fitting, a haircut, legal services, an English course or a shipment of goods from China — the model does not change by a single step. Limited demand. Competitors fighting for the same people. Price against quality. Advertising that may never pay off. Capacity that runs into money. And a cash gap that arrives before the profit does.</p>
+      <p>The food court was chosen because anyone can understand its rules in two minutes, with no industry context. After that, your own business begins — just without the risk of losing real money on it.</p>
+    </div>
+    </div>
+    <figure class="figure"><img src="../market-calc.jpg" width="1150" height="561" alt="The market counts by itself: companies make decisions, the model calculates, 10,000 customers are split between restaurants, and a monthly report appears — revenue, costs, profit, cash and market share" loading="lazy"></figure>
+    <p class="figcap">The same mechanics fit any business: only the sign above the door changes.</p>
+  </div>
+</section>
+
+<!-- FOUR USES -->
+<section class="sect">
+  <div class="wrap">
+    <span class="eyebrow">WHY PEOPLE PLAY IT</span>
+    <h2>Four instruments in one format</h2>
+    <figure class="figure figure--mid" style="margin-bottom:clamp(30px,4.5vw,46px)"><img src="../four-tools.jpg" width="953" height="720" alt="Four uses of the game Capture the Market: training, assessment, diagnostics and practice" loading="lazy"></figure>
+    <div class="cards cards--4">
+      <div class="card"><span class="card__tag">TRAINING</span><p>Skills are built through action. Not lecture notes on unit economics, but a decision that turned into a loss a month later.</p></div>
+      <div class="card"><span class="card__tag">ASSESSMENT</span><p>One game shows how a person does the maths, decides on incomplete data and takes a hit. A CV shows none of that.</p></div>
+      <div class="card"><span class="card__tag">DIAGNOSTICS</span><p>Managerial habits show up in the very first turns. You will see your own strengths and weak spots yourself, without anyone else's grades.</p></div>
+      <div class="card"><span class="card__tag">PRACTICE</span><p>The game can be repeated: change strategy, try it differently and compare the result on the same model.</p></div>
+    </div>
+
+    <h2 style="margin-top:clamp(44px,6vw,72px)">What one game reveals about a person</h2>
+    <ul class="seen">
+      <li>Whether they run the numbers or go by feel</li>
+      <li>What they do after the first loss</li>
+      <li>Whether they panic-discount when they start losing customers</li>
+      <li>Whether they take a loan they could do without</li>
+      <li>Whether they notice that advertising is not paying off</li>
+      <li>Whether they can stop and recalculate</li>
+      <li>How they react when a competitor overtakes them</li>
+      <li>Whether they will change strategy or cling to the first one</li>
+    </ul>
+  </div>
+</section>
+
+<!-- WHO IT FITS -->
+<section class="sect sect--tint">
+  <div class="wrap">
+    <span class="eyebrow">WHO IT FITS</span>
+    <h2>Who we usually see at the table</h2>
+    <div class="cards cards--4">
+      <div class="card"><h3>Entrepreneurs</h3><p>To test a strategy and managerial habits where a mistake costs only points.</p></div>
+      <div class="card"><h3>Managers and teams</h3><p>To see how a team makes decisions under pressure and a hard time limit.</p></div>
+      <div class="card"><h3>HR and L&amp;D</h3><p>Assessment and training in one event, with observable behaviour instead of questionnaires.</p></div>
+      <div class="card"><h3>Those still getting ready</h3><p>To understand the price of typical mistakes before having to pay it with their own money.</p></div>
+    </div>
+
+    <h2 style="margin-top:clamp(44px,6vw,72px)">Two formats</h2>
+    <div class="cards cards--2">
+      <div class="card">
+        <span class="card__tag">OPEN GAME</span>
+        <h3>Come on your own</h3>
+        <p>You play against people you do not know — it is fairer and more interesting that way. The schedule of upcoming games is published in the Telegram group.</p>
+        <div class="btns" style="margin-top:20px"><a class="btn" href="https://t.me/Market_Game_by_Nickbv">Join a game</a></div>
+      </div>
+      <div class="card">
+        <span class="card__tag">CORPORATE FORMAT</span>
+        <h3>Your team plays</h3>
+        <p>Up to twenty people, optionally in teams of several per company. Market settings and the final debrief are tailored to the objectives of the business.</p>
+        <div class="btns" style="margin-top:20px"><a class="btn btn--line" href="https://t.me/nickbv">Discuss a corporate game</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="sect">
+  <div class="wrap">
+    <span class="eyebrow">THE AUTHOR</span>
+    <div class="author">
+      <div>
+        <img class="author__photo" src="../author.jpg" width="560" height="700" alt="Nikolay Vladimirovich Bulenkov" loading="lazy">
+      </div>
+      <div>
+        <h2 style="margin-bottom:.3em">Nikolay Vladimirovich Bulenkov</h2>
+        <p class="lede">Creator of facilitated business games and corporate training programmes. More than twenty years in sales, management and business development.</p>
+        <ul class="regs">
+          <li>
+            <b>2014</b>
+            <div>
+              <p>Created the game “Deal Simulator” — a training tool for real-estate agents. Named the most useful tool for training realtors in Russia in 2014 by MAUA, the country's first realtors' trade union.</p>
+              <a class="cert" href="../cert.jpg" target="_blank" rel="noopener">
+                <img src="../cert.jpg" width="1200" height="799" alt="MAUA certificate: Nikolay Bulenkov created the most useful tool for training realtors in Russia in 2014 — the game Deal Simulator" loading="lazy">
+              </a>
+              <span class="viscap">Click to open the full certificate</span>
+            </div>
+          </li>
+          <li>
+            <b>2017—2019</b>
+            <div>
+              <p>Sales director at Like Centre (Ayaz Shabutdinov). In the 2019 results the company topped the ranking of online schools for entrepreneurs, ahead of Skolkovo, the EY Business Academy and the PwC academy.</p>
+              <img class="orglogo orglogo--like" src="../logo-like.png" width="194" height="88" alt="Like Centre" loading="lazy">
+            </div>
+          </li>
+          <li>
+            <b>2019—2021</b>
+            <div>
+              <p>Head of the training centre of the “33 Slona” project within Mail.ru&nbsp;Group.</p>
+              <img class="orglogo orglogo--mail" src="../logo-mailru.png" width="187" height="60" alt="Mail.ru Group" loading="lazy">
+            </div>
+          </li>
+          <li>
+            <b>Practice</b>
+            <div><p>Grew a department's gross revenue from 130 to 900 million ₽. Managed the development of a network of 21 real-estate agencies. Implemented CRM and ERP systems that doubled the effective working time of the managers.</p></div>
+          </li>
+          <li>
+            <b>Education</b>
+            <div><p>Bauman Moscow State Technical University, radio-electronic systems and devices.</p></div>
+          </li>
+        </ul>
+
+        <div class="offer">
+          <h3>Beyond the games — tracking and consulting</h3>
+          <p>The game shows how you make decisions. Tracking and consulting are work on your actual business: regular reviews of tasks, metrics and next steps.</p>
+          <div class="btns" style="margin-top:18px">
+            <a class="btn btn--line" href="https://t.me/nickbv">Request tracking</a>
+            <a class="btn btn--line" href="https://t.me/nickbv">Request consulting</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TELEGRAM GROUP -->
+<section class="sect sect--tint">
+  <div class="wrap">
+    <div class="tg split" style="align-items:center">
+      <div>
+        <span class="eyebrow">TELEGRAM GROUP</span>
+        <h2 style="margin-bottom:.35em">Game schedule and any questions</h2>
+      </div>
+      <div>
+        <p class="mute" style="font-size:16.5px">The group publishes the schedule of upcoming open games, and you can also ask about the format, taking part and corporate sessions. Joining is open to everyone.</p>
+        <div class="btns"><a class="btn" href="https://t.me/Market_Game_by_Nickbv">Open the group</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="sect sect--dark final">
+  <div class="wrap">
+    <span class="eyebrow">YOUR NEXT MOVE</span>
+    <h2>Twelve months of business are waiting for you at one table</h2>
+    <p class="lede">Mistakes here cost only points. Everything else is just like life.</p>
+    <div class="btns" style="margin-top:30px">
+      <a class="btn" href="https://t.me/Market_Game_by_Nickbv">Join a game</a>
+      <a class="btn btn--line" href="https://t.me/nickbv">Message the author</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="foot">
+    <span>“Capture the Market” · a business simulator by Nikolay Bulenkov</span>
+    <span>Game · tracking · consulting</span>
+  </div>
+</footer>
+
+<script>
+window.SIM_CONFIG = {
+  locale: 'en-US', currency: 'USD', priceDecimals: 2,
+  refPrice: 10, startCash: 50000, fixed: 3000, perTable: 35,
+  adReference: 3750, unitBase: 1, unitPerQuality: 0.4,
+  rivals: [
+    {id:'P2', color:'#3B82C4', price:8.75,  q:5, ad:3000, tables:110},
+    {id:'P3', color:'#2E9E5B', price:10.50, q:7, ad:4500, tables:130},
+    {id:'P4', color:'#E0A030', price:7.50,  q:4, ad:2250, tables:100},
+    {id:'P5', color:'#8B5CC7', price:12.00, q:8, ad:5000, tables:120}
+  ],
+  text: {
+    demand:   'Demand for your restaurant',
+    capacity: 'Your room seats',
+    served:   'Customers served',
+    revenue:  'Revenue',
+    costs:    'Costs',
+    profit:   'Profit for the month',
+    share:    'Market share',
+    qualValue:'{n} / 10',
+    cashLine: 'Cash in the register · month {m} of {t}',
+    warn:     '{demand} people wanted to come to you, but your room seats {cap}. Competitors took the difference. Advertising without capacity creates a queue that nobody can serve.',
+    verdictWin:  'The game year is over. You earned {n}. In a live game there are people sitting next to you who spent the whole year making that harder.',
+    verdictLose: 'The game year is over. You lost {n}. Here it cost you a couple of minutes; in real life it would have cost a year and all your savings.'
+  }
+};
+</script>
+<script src="../sim.js"></script>
+</body>
+</html>
