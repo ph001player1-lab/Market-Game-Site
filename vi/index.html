@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chiếm Lĩnh Thị Trường — trò chơi mô phỏng kinh doanh của Nikolay Bulenkov</title>
-<meta name="description" content="Mô phỏng kinh doanh có điều phối: một thị trường chung, đối thủ thật, mười hai tháng trong trò chơi. Đào tạo, đánh giá năng lực và chẩn đoán quyết định quản trị trong cùng một định dạng.">
+<title>Muốn khởi nghiệp? Hãy điều hành thử trước — Chiếm Lĩnh Thị Trường</title>
+<meta name="description" content="Thử nghiệm việc kinh doanh trong một ván chơi trước khi bỏ tiền thật. Một thị trường chung, đối thủ thật, trọn một năm kinh doanh trong một buổi. Ba hạng đấu từ 25 $ mỗi đội.">
 <meta name="theme-color" content="#F2F1EC">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://marketgame.club/vi/">
@@ -16,13 +16,138 @@
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
-<meta property="og:title" content="Chiếm Lĩnh Thị Trường — mô phỏng kinh doanh">
-<meta property="og:description" content="Một năm kinh doanh gói trong một ván chơi: một thị trường chung, đối thủ thật, và tiền mặt trong két là trọng tài duy nhất.">
+<meta property="og:title" content="Muốn khởi nghiệp? Hãy điều hành thử trước">
+<meta property="og:description" content="Một năm kinh doanh gói trong một ván chơi: một thị trường chung, đối thủ thật, và tiền mặt trong két là trọng tài duy nhất. Từ 25 $ mỗi đội.">
 <meta property="og:image" content="https://marketgame.club/og.jpg">
 <meta property="og:url" content="https://marketgame.club/vi/">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="stylesheet" href="../styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://marketgame.club/#org",
+      "name": "Chiếm Lĩnh Thị Trường",
+      "url": "https://marketgame.club/vi/",
+      "logo": "https://marketgame.club/og.jpg",
+      "founder": {
+        "@type": "Person",
+        "name": "Nikolay Vladimirovich Bulenkov",
+        "jobTitle": "Người sáng tạo các trò chơi kinh doanh có điều phối",
+        "alumniOf": "Đại học Kỹ thuật Quốc gia Moscow mang tên N. E. Bauman"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://marketgame.club/vi/#game",
+      "name": "Chiếm Lĩnh Thị Trường — mô phỏng kinh doanh có điều phối",
+      "description": "Trò chơi kinh doanh theo đội: từ 4 đến 20 đội cùng giành một thị trường trong 12, 24 hoặc 36 tháng trò chơi. Mô hình phân bổ 10.000 khách hàng theo giá, chất lượng, quảng cáo và sức phục vụ. Ai còn nhiều tiền mặt nhất thì thắng.",
+      "brand": { "@id": "https://marketgame.club/#org" },
+      "image": "https://marketgame.club/og.jpg",
+      "category": "Mô phỏng kinh doanh, đào tạo khởi nghiệp",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Người sắp khởi nghiệp và chủ doanh nghiệp đang hoạt động, lãnh đạo, nhân sự và L&D"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Hạng 12 · Khởi đầu",
+          "description": "12 tháng trò chơi dành cho người chưa có kinh doanh. Giá tính cho cả đội, không giới hạn số người.",
+          "price": "25",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://marketgame.club/vi/#leagues"
+        },
+        {
+          "@type": "Offer",
+          "name": "Hạng 24 · Tăng trưởng",
+          "description": "24 tháng trò chơi dành cho chủ doanh nghiệp đang hoạt động, tối đa 10 nhân viên và doanh thu tới 1.000.000 USD mỗi năm. Giá tính cho cả đội.",
+          "price": "100",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://marketgame.club/vi/#leagues"
+        },
+        {
+          "@type": "Offer",
+          "name": "Hạng 36 · Tinh hoa",
+          "description": "36 tháng trò chơi, buổi chiến lược dành cho doanh nghiệp vừa và lớn với thị trường thiết lập theo ngành của khách hàng. Giá tính cho cả đội.",
+          "price": "3000",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://marketgame.club/vi/#leagues"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://marketgame.club/vi/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Tôi muốn khởi nghiệp nhưng chưa có kinh nghiệm. Bắt đầu từ đâu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Từ một sai lầm rẻ tiền. Chỉ trong một buổi tối, ván chơi đưa bạn đi hết chặng đường mà ngoài đời mất cả năm: bạn đặt giá, đổ tiền vào quảng cáo, rồi vấp phải lỗ hổng dòng tiền. Ở đây sai lầm tốn điểm số chứ không tốn tiền tiết kiệm."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Chi phí tham gia là bao nhiêu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ba hạng đấu: 25 USD mỗi đội nếu bạn chưa có kinh doanh; 100 USD nếu việc kinh doanh đã chạy, tối đa mười nhân viên và doanh thu tới một triệu đô la mỗi năm; 3000 USD cho buổi chiến lược dành cho doanh nghiệp vừa và lớn. Giá luôn tính cho cả đội, và đội có bao nhiêu người cũng được."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Các hạng đấu khác nhau ở điểm nào?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ở độ dài ván chơi và ở những người cùng ngồi vào bàn. Hạng 12 là mười hai tháng giữa những người mới bắt đầu. Hạng 24 là hai mươi bốn tháng giữa các chủ doanh nghiệp đang hoạt động. Hạng 36 là ba mươi sáu tháng với thị trường được thiết lập theo ngành của bạn."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Chơi trực tuyến hay phải đi đâu đó?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cả hai đều được. Cơ chế giống hệt nhau: bạn ra quyết định, mô hình tính toán, mọi người cùng thấy kết quả. Trực tiếp có thêm những cuộc đàm phán sống động ngay bàn bên; trực tuyến cho phép gom đội từ nhiều thành phố."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Có cần chuẩn bị và học luật trước không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Không. Sẽ không có phần hướng dẫn trước ván chơi, và đó là chủ ý. Cơ chế trở nên rõ ràng sau vài tháng đầu, hệt như trong kinh doanh, nơi trước ngày khai trương không ai phát cho bạn bản hướng dẫn."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Khác gì so với một khoá học kinh doanh?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Khoá học giảng cho bạn về unit economics. Ở đây chính bạn đặt giá, chính bạn mất khách, và chính bạn đọc báo cáo cho thấy quảng cáo đã không hoàn vốn. Không ai chấm điểm: chỉ thị trường tính."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tôi đi một mình, không có đội. Có chơi được không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Được. Một đội gồm một người vẫn là một đội, và giá vẫn như vậy. Bạn sẽ chơi với những người tham gia khác, không phải với người điều phối."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -35,7 +160,7 @@
         <a href="../en/" lang="en" hreflang="en" title="English">EN</a>
         <span aria-current="page">VI</span>
       </nav>
-      <a class="bar__tg" href="https://t.me/Market_Game_by_Nickbv">Lịch chơi trên Telegram</a>
+      <a class="bar__tg" href="#leagues" data-lead="">Đăng ký tham gia</a>
     </div>
   </div>
 </header>
@@ -44,13 +169,13 @@
 <section class="wrap hero">
   <div class="hero__in">
     <div>
-      <span class="eyebrow">MÔ PHỎNG KINH DOANH CÓ ĐIỀU PHỐI</span>
-      <h1>Chiếm lĩnh<span>thị trường</span></h1>
-      <p class="lede">Một năm kinh doanh gói trong một ván chơi. Một thị trường chung cho tất cả, đối thủ thật ngồi ngay bàn bên, và tiền mặt trong két là trọng tài duy nhất.</p>
+      <span class="eyebrow">CHIẾM LĨNH THỊ TRƯỜNG · MÔ PHỎNG KINH DOANH CÓ ĐIỀU PHỐI</span>
+      <h1>Khởi nghiệp<span>thử trong ván chơi</span></h1>
+      <p class="lede">Hai giờ ngồi bàn chơi cho bạn thấy điều mà ngoài đời phải trả bằng nhiều tháng học trường kinh doanh và nhiều năm loay hoay với một thị trường không dành cho mình. Một thị trường chung cho tất cả, đối thủ thật ngồi ngay bàn bên, và tiền mặt trong két là trọng tài duy nhất.</p>
       <div class="btns">
-        <a class="btn" href="https://t.me/Market_Game_by_Nickbv">Đăng ký tham gia</a>
+        <button type="button" class="btn" data-lead="">Đăng ký tham gia</button>
       </div>
-      <p class="undercta">Lịch các ván chơi mở gần nhất được đăng trong nhóm Telegram. Bạn cũng có thể hỏi bất cứ điều gì ở đó.</p>
+      <p class="undercta">Ba hạng đấu: từ 25 $ mỗi đội cho người chưa có kinh doanh, đến buổi chiến lược dành cho doanh nghiệp vừa và lớn.</p>
     </div>
     <div class="hero__pic">
       <img src="../hero-vi.jpg" width="1150" height="767" alt="Sơ đồ trò chơi: dòng khách của trung tâm thương mại được phân bổ giữa các nhà hàng cạnh tranh trong khu ẩm thực" fetchpriority="high">
@@ -58,12 +183,12 @@
   </div>
 
   <dl class="specs">
-    <div><dt>NGƯỜI CHƠI</dt><dd>4—20</dd></div>
-    <div><dt>NĂM TRONG GAME</dt><dd>12 tháng</dd></div>
-    <div><dt>MỖI LƯỢT</dt><dd>3—5 phút</dd></div>
+    <div><dt>SỐ ĐỘI MỖI VÁN</dt><dd>4—20</dd></div>
+    <div><dt>MỖI ĐỘI</dt><dd>Không giới hạn</dd></div>
+    <div><dt>ĐỘ DÀI VÁN</dt><dd>12 / 24 / 36 tháng</dd></div>
     <div><dt>HÌNH THỨC</dt><dd>Trực tuyến hoặc trực tiếp</dd></div>
   </dl>
-  <p class="specnote">Nhóm đông sẽ chơi theo đội: vài người cùng điều hành một công ty và phải thống nhất với nhau trong đúng ba đến năm phút đó. Điều này thêm một lớp nữa cho trò chơi — đàm phán ngay trong đội của mình.</p>
+  <p class="specnote">Mỗi lượt kéo dài ba đến năm phút. Một đội điều hành một công ty và phải thống nhất với nhau trong đúng khoảng thời gian đó như mọi đội khác. Điều này thêm một lớp nữa cho trò chơi: đàm phán với chính người của mình khi đồng hồ đang chạy.</p>
 </section>
 
 <!-- ĐÂY LÀ GÌ -->
@@ -78,7 +203,7 @@
       <p>Vài công ty cùng ngồi vào một thị trường và bắt đầu giành cùng một nhóm khách hàng. Mỗi lượt là một tháng trong trò chơi. Bạn đặt giá, đầu tư vào chất lượng, chọn kênh quảng cáo, kê thêm bàn, tuyển người, vay vốn.</p>
       <p>Sau đó thị trường tự tính. Mười nghìn khách hàng được phân bổ giữa tất cả người chơi — không chia đều, mà tùy vào việc tổ hợp giá, chất lượng, quảng cáo và sức phục vụ của ai hấp dẫn hơn với họ. Điều đó do mô hình quyết định, không phải người điều phối.</p>
       <p>Bạn nhận báo cáo của riêng mình: doanh thu, chi phí, lợi nhuận, tiền còn trong két và thị phần. Rồi tháng tiếp theo bắt đầu.</p>
-      <p>Sau mười hai tháng, người thắng là người có nhiều tiền mặt nhất trong két. Không phải người kể về chiến lược của mình thuyết phục nhất.</p>
+      <p>Khi ván chơi kết thúc, người thắng là người có nhiều tiền mặt nhất trong két. Không phải người kể về chiến lược của mình thuyết phục nhất.</p>
     </div>
     </div>
     <figure class="figure"><img src="../one-market-vi.jpg" width="1150" height="647" alt="Một thị trường chung: dòng 10.000 khách hàng đi qua mô hình thị trường và được phân bổ giữa các nhà hàng cạnh tranh. Một lượt bằng một tháng, một năm trong game là mười hai tháng" loading="lazy"></figure>
@@ -135,7 +260,7 @@
         <p class="sim__warn" id="simWarn" hidden></p>
       </div>
     </div>
-    <p class="figcap">Ở đây các đối thủ đứng yên. Trong ván chơi thật, họ đi cùng lúc với bạn, và điều đó thay đổi tất cả.</p>
+    <p class="figcap">Ở đây minh hoạ một năm, như Hạng 12. Các đối thủ đứng yên; trong ván chơi thật, họ đi cùng lúc với bạn, và điều đó thay đổi tất cả.</p>
   </div>
 </section>
 
@@ -152,7 +277,7 @@
       <article><h3>Thị trường tính toán</h3><p>Mô hình phân bổ khách hàng giữa tất cả người chơi và tính lại tiền. Không có điểm số hay thiên vị của người điều phối — chỉ có kinh tế.</p></article>
       <article><h3>Bạn thấy kết quả</h3><p>Báo cáo về công ty của bạn: doanh thu, chi phí, lợi nhuận, tiền mặt, thị phần. Và bảng chung cho thấy ai đang dẫn trước.</p></article>
       <article><h3>Tháng tiếp theo</h3><p>Chiến lược bộc lộ qua một chuỗi lượt đi, chứ không qua một lượt. Sai lầm ở tháng thứ ba đuổi kịp bạn ở tháng thứ bảy, và đó là điều hữu ích nhất mà mô phỏng mang lại.</p></article>
-      <article><h3>Tổng kết cuối ván</h3><p>Sau tháng thứ mười hai, chúng ta cùng phân tích ai đã làm gì và vì sao kết quả lại như vậy. Phần học chính diễn ra ở đây.</p></article>
+      <article><h3>Tổng kết cuối ván</h3><p>Sau tháng cuối cùng, chúng ta cùng phân tích ai đã làm gì và vì sao kết quả lại như vậy. Phần học chính diễn ra ở đây.</p></article>
     </div>
   </div>
 </section>
@@ -231,21 +356,51 @@
       <div class="card"><h3>Người đang chuẩn bị khởi nghiệp</h3><p>Hiểu cái giá của những sai lầm điển hình trước khi phải trả bằng tiền của mình.</p></div>
     </div>
 
-    <h2 style="margin-top:clamp(44px,6vw,72px)">Hai hình thức</h2>
-    <div class="cards cards--2">
-      <div class="card">
-        <span class="card__tag">VÁN CHƠI MỞ</span>
-        <h3>Đến một mình</h3>
-        <p>Bạn chơi với những người không quen — như vậy công bằng và thú vị hơn. Lịch các ván chơi gần nhất được đăng trong nhóm Telegram.</p>
-        <div class="btns" style="margin-top:20px"><a class="btn" href="https://t.me/Market_Game_by_Nickbv">Đăng ký tham gia</a></div>
+    <h2 id="leagues" style="margin-top:clamp(44px,6vw,72px)">Ba hạng đấu</h2>
+    <p class="lede">Các hạng khác nhau ở độ dài ván chơi và ở những người cùng ngồi vào bàn. Hãy chọn hạng mô tả đúng bạn hôm nay.</p>
+    <div class="leagues">
+
+      <div class="league">
+        <span class="league__tag">HẠNG 12 · KHỞI ĐẦU</span>
+        <p class="league__name">Chưa có kinh doanh</p>
+        <p class="league__price">25 $<span class="league__per">cho cả đội, không tính theo đầu người</span></p>
+        <p class="league__who">Bạn đang chuẩn bị bắt đầu và muốn biết cái giá của những sai lầm điển hình trước khi phải trả bằng tiền của mình.</p>
+        <ul class="league__facts">
+          <li>12 tháng trong trò chơi</li>
+          <li>Đối thủ cũng là người mới bắt đầu</li>
+          <li>Phân tích quyết định sau ván chơi</li>
+        </ul>
+        <button type="button" class="btn" data-lead="l12">Đăng ký Hạng 12</button>
       </div>
-      <div class="card">
-        <span class="card__tag">HÌNH THỨC DOANH NGHIỆP</span>
-        <h3>Đội của bạn cùng chơi</h3>
-        <p>Tối đa hai mươi người, có thể chia thành các đội vài người cho mỗi công ty. Thiết lập thị trường và phần tổng kết cuối ván được điều chỉnh theo bài toán của doanh nghiệp.</p>
-        <div class="btns" style="margin-top:20px"><a class="btn btn--line" href="https://t.me/nickbv">Trao đổi về ván chơi doanh nghiệp</a></div>
+
+      <div class="league league--hot">
+        <span class="league__tag">HẠNG 24 · TĂNG TRƯỞNG</span>
+        <p class="league__name">Việc kinh doanh đã chạy</p>
+        <p class="league__price">100 $<span class="league__per">cho cả đội, không tính theo đầu người</span></p>
+        <p class="league__who">Bạn có tối đa mười nhân viên và doanh thu tới một triệu đô la mỗi năm. Đã đến lúc xem chiến lược của bạn đi được bao xa trên quãng đường dài.</p>
+        <ul class="league__facts">
+          <li>24 tháng trong trò chơi</li>
+          <li>Đối thủ là các chủ doanh nghiệp đang hoạt động</li>
+          <li>Phân tích dựa trên kinh tế thật của bạn</li>
+        </ul>
+        <button type="button" class="btn" data-lead="l24">Đăng ký Hạng 24</button>
       </div>
+
+      <div class="league">
+        <span class="league__tag">HẠNG 36 · TINH HOA</span>
+        <p class="league__name">Doanh nghiệp vừa và lớn</p>
+        <p class="league__price">3000 $<span class="league__per">cho cả đội, không tính theo đầu người</span></p>
+        <p class="league__who">Một buổi chiến lược: kiểm chứng giả thuyết trên chân trời dài, quan sát đội ngũ quản lý trong lúc làm việc và mổ xẻ từng quyết định.</p>
+        <ul class="league__facts">
+          <li>36 tháng trong trò chơi</li>
+          <li>Thị trường được thiết lập theo ngành của bạn</li>
+          <li>Phân tích mở rộng dành cho chủ doanh nghiệp</li>
+        </ul>
+        <button type="button" class="btn" data-lead="l36">Trao đổi về Hạng 36</button>
+      </div>
+
     </div>
+    <p class="leaguenote"><b>Giá tính cho cả đội.</b> Đội có bao nhiêu người cũng được: đến một mình, đi hai người, hay mang cả phòng ban. Mỗi ván chơi có từ bốn đến hai mươi đội — bàn càng đông, thị trường càng chật và kết quả càng sòng phẳng.</p>
   </div>
 </section>
 
@@ -299,8 +454,8 @@
           <h3>Ngoài trò chơi — tracking và tư vấn</h3>
           <p>Trò chơi cho thấy bạn ra quyết định thế nào. Tracking và tư vấn là làm việc trực tiếp với doanh nghiệp thật của bạn: rà soát định kỳ các đầu việc, chỉ số và bước tiếp theo.</p>
           <div class="btns" style="margin-top:18px">
-            <a class="btn btn--line" href="https://t.me/nickbv">Đặt dịch vụ tracking</a>
-            <a class="btn btn--line" href="https://t.me/nickbv">Đặt dịch vụ tư vấn</a>
+            <button type="button" class="btn btn--line" data-lead="tracking">Đặt dịch vụ tracking</button>
+            <button type="button" class="btn btn--line" data-lead="consulting">Đặt dịch vụ tư vấn</button>
           </div>
         </div>
       </div>
@@ -308,18 +463,40 @@
   </div>
 </section>
 
-<!-- NHÓM TELEGRAM -->
+<!-- CÂU HỎI THƯỜNG GẶP -->
 <section class="sect sect--tint">
   <div class="wrap">
-    <div class="tg split" style="align-items:center">
-      <div>
-        <span class="eyebrow">NHÓM TELEGRAM</span>
-        <h2 style="margin-bottom:.35em">Lịch chơi và mọi câu hỏi</h2>
-      </div>
-      <div>
-        <p class="mute" style="font-size:16.5px">Nhóm đăng lịch các ván chơi mở gần nhất, và bạn cũng có thể hỏi về hình thức, cách tham gia và các buổi chơi cho doanh nghiệp. Tham gia nhóm hoàn toàn tự do.</p>
-        <div class="btns"><a class="btn" href="https://t.me/Market_Game_by_Nickbv">Mở nhóm</a></div>
-      </div>
+    <span class="eyebrow">CÂU HỎI THƯỜNG GẶP</span>
+    <h2>Trả lời ngắn gọn</h2>
+    <div class="faq">
+      <details>
+        <summary>Tôi muốn khởi nghiệp nhưng chưa có kinh nghiệm. Bắt đầu từ đâu?</summary>
+        <p class="faq__a">Từ một sai lầm rẻ tiền. Chỉ trong một buổi tối, ván chơi đưa bạn đi hết chặng đường mà ngoài đời mất cả năm: bạn đặt giá, đổ tiền vào quảng cáo, rồi vấp phải lỗ hổng dòng tiền. Ở đây sai lầm tốn điểm số chứ không tốn tiền tiết kiệm. Sau đó, người ra quyết định trong việc kinh doanh thật đã là một người khác.</p>
+      </details>
+      <details>
+        <summary>Chi phí tham gia là bao nhiêu?</summary>
+        <p class="faq__a">Ba hạng đấu: 25 $ mỗi đội nếu bạn chưa có kinh doanh; 100 $ nếu việc kinh doanh đã chạy — tối đa mười nhân viên và doanh thu tới một triệu đô la mỗi năm; 3000 $ cho buổi chiến lược dành cho doanh nghiệp vừa và lớn. Giá luôn tính cho cả đội, và đội có bao nhiêu người cũng được.</p>
+      </details>
+      <details>
+        <summary>Các hạng đấu khác nhau ở điểm nào?</summary>
+        <p class="faq__a">Ở độ dài ván chơi và ở những người cùng ngồi vào bàn. Hạng 12 là mười hai tháng giữa những người mới bắt đầu. Hạng 24 là hai mươi bốn tháng giữa các chủ doanh nghiệp đang hoạt động. Hạng 36 là ba mươi sáu tháng với thị trường được thiết lập theo ngành của bạn.</p>
+      </details>
+      <details>
+        <summary>Chơi trực tuyến hay phải đi đâu đó?</summary>
+        <p class="faq__a">Cả hai đều được. Cơ chế giống hệt nhau: bạn ra quyết định, mô hình tính toán, mọi người cùng thấy kết quả. Trực tiếp có thêm những cuộc đàm phán sống động ngay bàn bên; trực tuyến cho phép gom đội từ nhiều thành phố.</p>
+      </details>
+      <details>
+        <summary>Có cần chuẩn bị và học luật trước không?</summary>
+        <p class="faq__a">Không. Sẽ không có phần hướng dẫn trước ván chơi, và đó là chủ ý. Cơ chế trở nên rõ ràng sau vài tháng đầu, hệt như trong kinh doanh, nơi trước ngày khai trương không ai phát cho bạn bản hướng dẫn.</p>
+      </details>
+      <details>
+        <summary>Khác gì so với một khoá học kinh doanh?</summary>
+        <p class="faq__a">Khoá học giảng cho bạn về unit economics. Ở đây chính bạn đặt giá, chính bạn mất khách, và chính bạn đọc báo cáo cho thấy quảng cáo đã không hoàn vốn. Không ai chấm điểm: chỉ thị trường tính.</p>
+      </details>
+      <details>
+        <summary>Tôi đi một mình, không có đội. Có chơi được không?</summary>
+        <p class="faq__a">Được. Một đội gồm một người vẫn là một đội, và giá vẫn như vậy. Bạn sẽ chơi với những người tham gia khác, không phải với người điều phối.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -328,11 +505,10 @@
 <section class="sect sect--dark final">
   <div class="wrap">
     <span class="eyebrow">NƯỚC ĐI TIẾP THEO</span>
-    <h2>Mười hai tháng kinh doanh đang chờ bạn tại một chiếc bàn</h2>
+    <h2>Thử việc kinh doanh trước khi trả tiền cho nó</h2>
     <p class="lede">Sai lầm ở đây chỉ tốn điểm số. Mọi thứ còn lại đúng như ngoài đời.</p>
     <div class="btns" style="margin-top:30px">
-      <a class="btn" href="https://t.me/Market_Game_by_Nickbv">Đăng ký tham gia</a>
-      <a class="btn btn--line" href="https://t.me/nickbv">Nhắn cho tác giả</a>
+      <button type="button" class="btn" data-lead="">Đăng ký tham gia</button>
     </div>
   </div>
 </section>
@@ -340,7 +516,7 @@
 <footer class="wrap">
   <div class="foot">
     <span>«Chiếm Lĩnh Thị Trường» · trò chơi mô phỏng kinh doanh của Nikolay Bulenkov</span>
-    <span>Trò chơi · tracking · tư vấn</span>
+    <span><a href="privacy.html">Chính sách bảo mật</a></span>
   </div>
 </footer>
 
@@ -372,5 +548,47 @@ window.SIM_CONFIG = {
 };
 </script>
 <script src="../sim.js"></script>
+
+<script>
+window.FORM_CONFIG = {
+  endpoint: 'https://script.google.com/macros/s/AKfycbxE0kMC6oIlYu7r6wyIFLdjhnkD862wcumVuhh9k7uDW4CD8QnOKINW2HWd_IWopeQE/exec',
+  lang: 'vi',
+  privacyUrl: 'privacy.html',
+  fallback: { url: 'https://t.me/nickbv', label: '@nickbv' },
+  leagues: {
+    '':           'Chưa quyết định',
+    l12:          'Hạng 12 · Khởi đầu — 25 $',
+    l24:          'Hạng 24 · Tăng trưởng — 100 $',
+    l36:          'Hạng 36 · Tinh hoa — 3000 $',
+    tracking:     'Tracking',
+    consulting:   'Tư vấn'
+  },
+  text: {
+    title:        'Đăng ký tham gia',
+    subtitle:     'Chúng tôi phản hồi trong ngày và báo bạn về các ván chơi sắp tới.',
+    name:         'Tên của bạn',
+    namePh:       'Tên',
+    phone:        'Số điện thoại',
+    phonePh:      '+84 900 000 000',
+    telegram:     'Tài khoản Telegram',
+    telegramPh:   '@username',
+    league:       'Bạn quan tâm điều gì',
+    consent:      'Tôi đồng ý cho xử lý dữ liệu cá nhân của mình —',
+    privacy:      'chính sách bảo mật',
+    submit:       'Gửi đăng ký',
+    sending:      'Đang gửi…',
+    successTitle: 'Đã nhận đăng ký',
+    successText:  'Chúng tôi sẽ liên hệ trong vòng một ngày. Nếu không thấy hồi âm, bạn hãy nhắn trực tiếp — liên hệ nằm ở chân trang.',
+    close:        'Đóng',
+    errName:      'Hãy cho biết chúng tôi nên gọi bạn thế nào.',
+    errContact:   'Hãy để lại số điện thoại hoặc tài khoản Telegram — nếu không chúng tôi không thể trả lời.',
+    errPhone:     'Số điện thoại có vẻ chưa đầy đủ. Bạn kiểm tra lại nhé.',
+    errConsent:   'Không có sự đồng ý xử lý dữ liệu, chúng tôi không thể nhận đăng ký.',
+    errSend:      'Không gửi được đăng ký.',
+    errSendFallback: 'Hãy nhắn trực tiếp:'
+  }
+};
+</script>
+<script src="../form.js"></script>
 </body>
 </html>

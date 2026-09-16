@@ -49,7 +49,11 @@ a{color:var(--red)}
 .sect--dark .eyebrow{color:#FF7A5C}
 
 h1,h2{margin:0;line-height:1.06;letter-spacing:-.025em;font-weight:800}
-h1{font-family:var(--disp);font-weight:800;font-size:clamp(40px,7.4vw,84px);letter-spacing:-.035em;line-height:.94;text-transform:uppercase}
+/* Заголовок набирается прописными в display-шрифте, поэтому переносить слова
+   нельзя — перенос рубит слово посередине. Вместо этого держим в H1 короткие
+   слова (самое длинное — «ОТКРОЙТЕ», 8 знаков) и такую нижнюю границу кегля,
+   при которой это слово помещается в колонку на экране 360px. */
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(34px,7.4vw,84px);letter-spacing:-.035em;line-height:.96;text-transform:uppercase}
 h2{font-size:clamp(26px,3.9vw,44px);margin-bottom:.5em}
 h3{margin:0 0 8px;font-size:19px;font-weight:700;letter-spacing:-.008em}
 p{margin:0 0 1.05em}
@@ -88,6 +92,7 @@ p{margin:0 0 1.05em}
 /* герой */
 .hero{padding-top:clamp(36px,5vw,64px);padding-bottom:clamp(40px,5vw,64px)}
 .hero__in{display:grid;gap:clamp(28px,4vw,52px);align-items:center}
+.hero__in>*{min-width:0}
 @media(min-width:900px){.hero__in{grid-template-columns:minmax(0,1fr) minmax(0,.92fr)}}
 .hero h1{margin-bottom:20px}
 .hero h1 span{display:block;color:var(--red)}
@@ -209,6 +214,76 @@ p{margin:0 0 1.05em}
 .sim__stats .plus{color:#4FBF7F}
 .sim__stats .minus{color:#F2705A}
 .sim__warn{margin:18px 0 0;padding:13px 15px;border-left:3px solid #E9A63C;background:rgba(233,166,60,.09);font-size:14.5px;color:#E6C88C;line-height:1.5}
+
+/* --- лиги --- */
+.leagues{display:grid;gap:14px;margin-top:clamp(26px,4vw,40px)}
+@media(min-width:900px){.leagues{grid-template-columns:repeat(3,1fr)}}
+.league{display:flex;flex-direction:column;border:2px solid var(--ink);padding:26px 24px;background:var(--paper)}
+.sect--tint .league{background:var(--paper-2)}
+.league--hot{border-color:var(--red);box-shadow:5px 5px 0 var(--red)}
+.league__tag{display:block;font-size:11.5px;font-weight:800;letter-spacing:.13em;color:var(--red);margin-bottom:12px}
+.league__name{font-family:var(--disp);font-weight:700;font-size:23px;letter-spacing:-.02em;margin:0 0 4px;line-height:1.15}
+.league__price{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4vw,40px);letter-spacing:-.03em;line-height:1;margin:10px 0 2px}
+.league__per{display:block;font-family:var(--sans);font-size:13.5px;font-weight:700;color:var(--mute);letter-spacing:0;margin-bottom:18px}
+.league__who{font-size:15.5px;color:var(--mute);margin:0 0 18px}
+.league__facts{list-style:none;margin:0 0 24px;padding:0;font-size:15px}
+.league__facts li{position:relative;padding:7px 0 7px 20px;border-bottom:1px solid var(--line-2)}
+.league__facts li::before{content:"";position:absolute;left:0;top:16px;width:10px;height:2px;background:var(--red)}
+.league__facts li:last-child{border-bottom:0}
+.league .btn{margin-top:auto;text-align:center}
+.leaguenote{margin:clamp(20px,3vw,28px) 0 0;font-size:16px;color:var(--mute);max-width:70ch}
+.leaguenote b{color:var(--ink);font-weight:700}
+.sect--dark .leaguenote b{color:var(--paper)}
+
+/* --- FAQ --- */
+.faq{margin-top:clamp(26px,4vw,40px);border-top:1px solid var(--line-2)}
+.faq details{border-bottom:1px solid var(--line-2)}
+.faq summary{cursor:pointer;list-style:none;padding:18px 34px 18px 0;position:relative;font-size:17px;font-weight:700;letter-spacing:-.008em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:9px;height:9px;margin-top:-7px;border-right:2px solid var(--red);border-bottom:2px solid var(--red);transform:rotate(45deg);transition:transform .15s}
+.faq details[open] summary::after{transform:rotate(-135deg);margin-top:-2px}
+.faq summary:hover{color:var(--red)}
+.faq__a{margin:0;padding:0 0 20px;font-size:16px;color:var(--mute);max-width:72ch}
+
+/* --- форма заявки --- */
+.lf{padding:0;border:2px solid var(--ink);border-radius:3px;background:var(--paper);color:var(--ink);max-width:460px;width:calc(100% - 32px);box-shadow:8px 8px 0 rgba(22,22,26,.18)}
+.lf::backdrop{background:rgba(22,22,26,.55)}
+.lf__in{position:relative;padding:clamp(24px,4vw,34px)}
+.lf__x{position:absolute;top:10px;right:12px;width:34px;height:34px;border:0;background:transparent;font-size:26px;line-height:1;color:var(--mute);cursor:pointer;border-radius:3px}
+.lf__x:hover{color:var(--red)}
+.lf__t{font-size:clamp(21px,3vw,26px);margin:0 0 6px;line-height:1.15}
+.lf__sub{font-size:15px;color:var(--mute);margin:0 0 22px}
+.lf__row{margin-bottom:15px}
+.lf__row label{display:block;font-size:14px;font-weight:700;margin-bottom:6px}
+.lf__row input,.lf__row select{width:100%;font:inherit;font-size:16px;padding:11px 13px;border:2px solid var(--line);border-radius:3px;background:#fff;color:var(--ink)}
+.lf__row input:focus,.lf__row select:focus{outline:none;border-color:var(--ink)}
+.lf__row--bad input,.lf__row--bad select{border-color:var(--red)}
+.lf__hint{display:block;font-size:13px;color:var(--mute);margin-top:5px}
+.lf__trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.lf__check{display:flex;gap:10px;align-items:flex-start;margin:18px 0 0}
+.lf__check input{margin-top:3px;width:17px;height:17px;flex:none;accent-color:var(--red)}
+.lf__consent{font-size:14px;color:var(--mute);line-height:1.45}
+.lf__actions{margin-top:22px}
+.lf__actions .btn{width:100%;padding:14px 20px}
+.lf__actions .btn:disabled{opacity:.6;cursor:default}
+.lf__status{margin:14px 0 0;font-size:14.5px;line-height:1.45;min-height:1px}
+.lf__status--bad{color:var(--red-dk)}
+.lf__form--done{display:none}
+.lf__done h3{font-size:20px;margin:0 0 8px}
+.lf__done p{font-size:15.5px;color:var(--mute);margin:0 0 20px}
+.lf__done .btn{width:100%;padding:14px 20px}
+
+/* --- юридические страницы --- */
+.legal{max-width:72ch}
+.legal h2{font-size:clamp(21px,2.6vw,27px);margin:clamp(30px,4vw,44px) 0 .6em}
+.legal h2:first-of-type{margin-top:0}
+.legal p,.legal li{font-size:16.5px;color:var(--ink-2)}
+.legal ul{padding-left:20px;margin:0 0 1.05em}
+.legal li{margin-bottom:.5em}
+/* плейсхолдеры под реквизиты бывают длинными — переносить им можно и нужно */
+.legal .fill{background:rgba(216,66,42,.12);border-bottom:2px solid var(--red);padding:1px 5px;font-weight:700}
+.legal__date{font-size:14.5px;color:var(--mute);margin-bottom:clamp(26px,4vw,38px)}
+.backlink{display:inline-block;margin-top:clamp(30px,4vw,44px);font-weight:700;font-size:15.5px}
 
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .hero h1,.hero .lede,.hero .btns,.hero .undercta,.hero__pic{animation:rise .7s cubic-bezier(.2,.75,.3,1) both}
