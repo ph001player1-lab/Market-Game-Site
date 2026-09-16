@@ -53,7 +53,9 @@ h1,h2{margin:0;line-height:1.06;letter-spacing:-.025em;font-weight:800}
    перенос рубит слово посередине. Поэтому кегль привязан не к ширине окна,
    а к ширине собственной колонки (cqw): длина заголовка сильно зависит от
    языка, и по vw русский вариант вылезал из колонки на картинку. */
-h1{font-family:var(--disp);font-weight:800;font-size:clamp(30px,11.4cqw,84px);letter-spacing:-.035em;line-height:.96;text-transform:uppercase}
+/* word-spacing компенсирует отрицательный letter-spacing: тот сжимает и пробел
+   тоже, и в жирном прописном начертании слова начинают сливаться */
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(30px,11.4cqw,84px);letter-spacing:-.035em;word-spacing:.14em;line-height:.96;text-transform:uppercase}
 h2{font-size:clamp(26px,3.9vw,44px);margin-bottom:.5em}
 h3{margin:0 0 8px;font-size:19px;font-weight:700;letter-spacing:-.008em}
 p{margin:0 0 1.05em}
