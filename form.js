@@ -116,9 +116,15 @@
     submitBtn.textContent = T.submit;
     setStatus('', '');
     form.classList.remove('lf__form--done');
+    dropDoneBox();
     Array.prototype.forEach.call(form.querySelectorAll('.lf__row'), function (r) {
       r.classList.remove('lf__row--bad');
     });
+  }
+
+  function dropDoneBox() {
+    var done = dialog.querySelector('.lf__done');
+    if (done) done.parentNode.removeChild(done);
   }
 
   function setStatus(message, kind, html) {
@@ -163,6 +169,14 @@
     };
   }
 
+  // Apps Script отвечает медленно: холодный старт, запись в таблицу и вызов
+  // Telegram идут по очереди, и десять секунд для него — норма. Держать
+  // человека перед крутящейся кнопкой всё это время незачем: показываем
+  // подтверждение через SHOW_AFTER, а запрос продолжает идти в фоне.
+  // Если он всё-таки не дойдёт, подменим подтверждение на ошибку.
+  var SHOW_AFTER = 1200;
+  var shown;
+
   function submit(event) {
     event.preventDefault();
     var payload = validate();
@@ -171,23 +185,34 @@
     submitBtn.disabled = true;
     submitBtn.textContent = T.sending;
     setStatus('', '');
+    shown = false;
+
+    var timer = setTimeout(succeed, SHOW_AFTER);
 
     // text/plain — «простой» запрос, браузер не делает предварительный
     // OPTIONS, который Apps Script не обрабатывает.
+    // keepalive досылает заявку, даже если вкладку закроют сразу после отправки.
     fetch(C.endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      keepalive: true
     })
       .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('http ' + r.status)); })
       .then(function (res) {
         if (!res || res.status !== 'ok') throw new Error('backend');
+        clearTimeout(timer);
         succeed();
       })
-      .catch(fail);
+      .catch(function () {
+        clearTimeout(timer);
+        fail();
+      });
   }
 
   function succeed() {
+    if (shown) return;
+    shown = true;
     form.classList.add('lf__form--done');
     setStatus('', '');
     var box = el('div', { class: 'lf__done' }, [
@@ -201,11 +226,17 @@
   }
 
   function fail() {
+    // Отказ мог прийти уже после того, как мы показали подтверждение —
+    // тогда убираем его и честно говорим, что заявка не ушла.
+    shown = true;
+    dropDoneBox();
+    form.classList.remove('lf__form--done');
     submitBtn.disabled = false;
     submitBtn.textContent = T.submit;
     var link = '<a href="' + C.fallback.url + '" target="_blank" rel="noopener">' +
                C.fallback.label + '</a>';
     setStatus('', 'bad', T.errSend + ' ' + T.errSendFallback + ' ' + link);
+    if (!dialog.open) dialog.showModal();
   }
 
   doc.addEventListener('click', function (event) {
