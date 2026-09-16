@@ -1,9 +1,10 @@
 # Capture the Market (Захвати рынок)
 
 > A facilitated business simulation where teams compete for one shared market
-> over 12, 24 or 36 game months. Built for people who want to start a business
-> and would rather make their expensive mistakes on a game board than with
-> their own savings.
+> over 12, 24 or 36 game months, all played in a single session. Built both
+> for people about to start a business and for owners already running one,
+> who would rather make their expensive mistakes on a game board than with
+> their own money.
 
 Run by Nikolay Bulenkov. Available online and offline, in Russian, English
 and Vietnamese.
@@ -33,17 +34,43 @@ deliberate, and mirrors how opening a real business actually feels.
 Prices are per team, not per person. A team may have any number of people.
 A single game seats 4 to 20 teams.
 
-- League 12 · Start — 25 USD per team. 12 game months. For people who have
-  no business yet and want to learn the cost of typical mistakes first.
-- League 24 · Growth — 100 USD per team. 24 game months. For owners of a
-  running business with up to 10 employees and up to 1,000,000 USD annual
-  revenue.
-- League 36 · Elite — 3000 USD per team. 36 game months. A strategy session
-  for medium and large businesses, with the market tuned to the client's
-  industry and an extended debrief for the owner.
+- League 12 · Start — 25 USD / 2,000 RUB / 650,000 VND per team. 12 game
+  months. For people who have no business yet and want to learn the cost of
+  typical mistakes first.
+- League 24 · Growth — 100 USD / 8,500 RUB / 2,600,000 VND per team. 24 game
+  months. For owners of a running business with up to 10 employees and up to
+  1,000,000 USD annual revenue.
+- League 36 · Elite — 3000 USD / 250,000 RUB / 78,000,000 VND per team.
+  36 game months. A strategy session for medium and large businesses, with an
+  extended debrief for the owner.
+
+The leagues differ in exactly two ways: how long the game runs, and who else
+is at the table. The market model itself is identical in every league and is
+not customised per industry.
+
+Important: the 12, 24 and 36 are GAME months, not calendar months. The whole
+game is played in one session; one game month is one turn of three to five
+minutes.
 
 Payment is arranged directly with a manager after a request is submitted
 through the site. There is no online checkout.
+
+## Why a live game rather than an AI consultant
+
+On a real market you compete against people, not against models. An AI will
+give you a competent, lawful, entirely standard strategy — and that is
+precisely what competitors do not do. They dig in, bluff, cut prices out of
+spite, copy you two months too late, or make a move no calculation would
+propose. It is the difference between playing chess against an engine and
+against a human being.
+
+The mistake the game exposes: you can build a flawless company — calculated
+price, honest quality, advertising in the right channels, capacity sized to
+demand — and still lose, because the competitor beside you behaved in a way
+your model never allowed for. What decides the fate of a business is not how
+the company is arranged internally, but what happens between you and the next
+table. Sitting down against more experienced opponents is the fastest way to
+see it.
 
 ## What people use it for
 
