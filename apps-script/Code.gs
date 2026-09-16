@@ -15,6 +15,10 @@
  *      «Запуск от имени: я», «Доступ: все».
  *   5. Скопировать адрес вида .../exec и прислать его мне.
  *
+ * ЕСЛИ ЧТО-ТО НЕ РАБОТАЕТ: выберите наверху функцию checkSetup и нажмите
+ * «Выполнить». Она проверит ключи, токен, доступ к группе и таблицу,
+ * и прямо напишет, что именно сломалось.
+ *
  * ВАЖНО: токен живёт в свойствах скрипта и на сайт не попадает.
  * Никогда не вписывайте его прямо в этот файл — он лежит в публичном репозитории.
  */
@@ -70,9 +74,18 @@ function doPost(e) {
   }
 }
 
-/** Проверка, что развёртывание живое: откройте адрес /exec в браузере. */
+/**
+ * Проверка, что развёртывание живое: откройте адрес /exec в браузере.
+ * Показывает, заданы ли ключи, но сами значения не раскрывает.
+ */
 function doGet() {
-  return ok({ status: 'ok', service: 'marketgame-leads' });
+  var props = PropertiesService.getScriptProperties();
+  return ok({
+    status: 'ok',
+    service: 'marketgame-leads',
+    hasToken: !!props.getProperty('BOT_TOKEN'),
+    hasChatId: !!props.getProperty('CHAT_ID')
+  });
 }
 
 function appendLead(row) {
@@ -101,12 +114,69 @@ function getSheet() {
   return sheet;
 }
 
-function notifyTelegram(row) {
+/**
+ * Отправка в Telegram. Возвращает {ok, error} и НИКОГДА не бросает исключение:
+ * заявка к этому моменту уже лежит в таблице, и терять её из-за Telegram нельзя.
+ * Всё, что пошло не так, попадает в журнал выполнения.
+ */
+function sendToTelegram(text) {
   var props = PropertiesService.getScriptProperties();
   var token = props.getProperty('BOT_TOKEN');
   var chatId = props.getProperty('CHAT_ID');
-  if (!token || !chatId) return;   // ключи ещё не прописаны — заявка всё равно в таблице
 
+  if (!token) return { ok: false, error: 'В свойствах скрипта не задан BOT_TOKEN' };
+  if (!chatId) return { ok: false, error: 'В свойствах скрипта не задан CHAT_ID' };
+
+  try {
+    var res = UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify({
+        chat_id: chatId,
+        text: text,
+        parse_mode: 'HTML',
+        disable_web_page_preview: true
+      }),
+      muteHttpExceptions: true
+    });
+
+    var body = {};
+    try { body = JSON.parse(res.getContentText()); } catch (e) {}
+
+    if (body.ok) return { ok: true };
+
+    var reason = body.description || ('HTTP ' + res.getResponseCode());
+    console.error('Telegram отказал: ' + reason);
+    return { ok: false, error: reason, hint: explainTelegramError(reason) };
+  } catch (err) {
+    console.error('Не удалось обратиться к Telegram: ' + err);
+    return { ok: false, error: String(err) };
+  }
+}
+
+/** Перевод ответов Telegram на человеческий язык. */
+function explainTelegramError(reason) {
+  var r = String(reason).toLowerCase();
+  if (r.indexOf('chat not found') > -1) {
+    return 'CHAT_ID неверный. У групп он отрицательный и обычно начинается с -100. ' +
+           'Проверьте, что скопировали его целиком, вместе с минусом.';
+  }
+  if (r.indexOf('unauthorized') > -1 || r.indexOf('401') > -1) {
+    return 'BOT_TOKEN неверный или бот удалён. Возьмите токен заново у @BotFather.';
+  }
+  if (r.indexOf('kicked') > -1 || r.indexOf('not a member') > -1) {
+    return 'Бота нет в группе. Добавьте его обратно.';
+  }
+  if (r.indexOf('not enough rights') > -1 || r.indexOf('have no rights') > -1) {
+    return 'Бот в группе, но ему запрещено писать. Сделайте его администратором.';
+  }
+  if (r.indexOf('bots can\'t send messages to bots') > -1) {
+    return 'CHAT_ID указывает на бота, а не на группу.';
+  }
+  return 'Полный текст ошибки выше — он от Telegram.';
+}
+
+function notifyTelegram(row) {
   var lines = [
     '<b>Новая заявка</b>',
     '',
@@ -119,24 +189,7 @@ function notifyTelegram(row) {
     row.referrer ? 'Пришёл с: ' + esc(row.referrer) : ''
   ].filter(function (l) { return l !== ''; });
 
-  var payload = {
-    chat_id: chatId,
-    text: lines.join('\n'),
-    parse_mode: 'HTML',
-    disable_web_page_preview: true
-  };
-
-  try {
-    UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
-      method: 'post',
-      contentType: 'application/json',
-      payload: JSON.stringify(payload),
-      muteHttpExceptions: true
-    });
-  } catch (err) {
-    // Telegram недоступен — заявка уже записана в таблицу, не теряем её.
-    console.error(err);
-  }
+  return sendToTelegram(lines.join('\n'));
 }
 
 function clean(value, max) {
@@ -164,18 +217,119 @@ function ok(obj) {
 }
 
 /**
- * Разовая проверка связки с Telegram.
- * Запустите эту функцию в редакторе (кнопка «Выполнить») — в группу
- * должно прийти тестовое сообщение. Если не пришло, смотрите журнал.
+ * ГЛАВНАЯ ФУНКЦИЯ ДЛЯ НАСТРОЙКИ.
+ *
+ * Выберите её в списке функций наверху редактора и нажмите «Выполнить».
+ * Она проверит всё по шагам и прямо скажет, что не так. Результат виден
+ * в панели выполнения внизу — читать журнал отдельно не нужно.
  */
-function testTelegram() {
-  notifyTelegram({
+function checkSetup() {
+  var props = PropertiesService.getScriptProperties();
+  var token = props.getProperty('BOT_TOKEN');
+  var chatId = props.getProperty('CHAT_ID');
+  var out = [];
+
+  function say(line) { out.push(line); console.log(line); }
+  function stop(line) {
+    say('✗ ' + line);
+    throw new Error('\n\n' + out.join('\n') + '\n');
+  }
+
+  say('--- Проверка настройки ---');
+
+  // 1. Ключи на месте?
+  if (!token) {
+    stop('Не задан BOT_TOKEN.\n' +
+         '  Настройки проекта (шестерёнка слева) → Свойства скрипта →\n' +
+         '  Добавить свойство. Имя ровно BOT_TOKEN, значение — токен от @BotFather.');
+  }
+  say('✓ BOT_TOKEN задан (' + token.length + ' символов)');
+
+  if (!chatId) {
+    stop('Не задан CHAT_ID.\n' +
+         '  Там же добавьте свойство CHAT_ID со значением id группы.');
+  }
+  say('✓ CHAT_ID задан: ' + chatId);
+
+  if (String(chatId).indexOf('-') !== 0) {
+    say('⚠ CHAT_ID не начинается с минуса. У групп он отрицательный,\n' +
+        '  обычно вида -1001234567890. Если это id личного чата — сообщения\n' +
+        '  будут приходить вам лично, а не в группу.');
+  }
+
+  // 2. Токен рабочий?
+  var me;
+  try {
+    var r = UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/getMe',
+                              { muteHttpExceptions: true });
+    me = JSON.parse(r.getContentText());
+  } catch (err) {
+    stop('Не удалось обратиться к Telegram: ' + err + '\n' +
+         '  Если Google показал окно с запросом доступа — согласитесь и запустите снова.');
+  }
+
+  if (!me.ok) {
+    stop('Telegram не принял токен: ' + (me.description || 'неизвестная ошибка') + '\n' +
+         '  ' + explainTelegramError(me.description || ''));
+  }
+  say('✓ Токен рабочий, бот: @' + me.result.username);
+
+  // 3. Сообщение доходит?
+  var sent = sendToTelegram(
+    '<b>Проверка настройки</b>\n\nЕсли вы это читаете — приём заявок настроен верно.');
+
+  if (!sent.ok) {
+    stop('Бот не смог написать в группу.\n' +
+         '  Ответ Telegram: ' + sent.error + '\n' +
+         '  ' + (sent.hint || ''));
+  }
+  say('✓ Сообщение отправлено — проверьте группу');
+
+  // 4. Таблица на месте?
+  try {
+    var sheet = getSheet();
+    say('✓ Лист «' + sheet.getName() + '» готов, строк с данными: ' +
+        Math.max(0, sheet.getLastRow() - 1));
+  } catch (err) {
+    stop('Не удалось открыть таблицу: ' + err + '\n' +
+         '  Скрипт должен быть привязан к таблице: откройте таблицу →\n' +
+         '  Расширения → Apps Script, и вставьте код там.');
+  }
+
+  say('');
+  say('ВСЁ ГОТОВО. Осталось развернуть: Развернуть → Управление развёртываниями →');
+  say('карандаш → Версия: новая → Развернуть.');
+
+  var report = out.join('\n');
+  console.log(report);
+  return report;
+}
+
+/**
+ * Полный прогон: делает вид, что с сайта пришла заявка.
+ * Пишет строку в таблицу и шлёт сообщение — ровно как в боевом режиме.
+ * Строку потом удалите из таблицы вручную.
+ */
+function testLead() {
+  var row = {
+    date: new Date(),
     name: 'Тестовая заявка',
     phone: '+7 000 000-00-00',
     telegram: '@test',
-    league: 'Лига 12',
+    league: 'Лига 12 · Старт — $25',
     lang: 'ru',
-    utm: '',
-    referrer: ''
-  });
+    page: 'проверка из редактора',
+    referrer: '',
+    utm: ''
+  };
+
+  appendLead(row);
+  var sent = notifyTelegram(row);
+
+  if (!sent.ok) {
+    throw new Error('\nСтрока в таблицу записана, но в Telegram не ушло.\n' +
+                    'Ответ Telegram: ' + sent.error + '\n' +
+                    (sent.hint || '') + '\n');
+  }
+  return 'Готово: строка в таблице и сообщение в группе.';
 }
