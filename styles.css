@@ -49,11 +49,11 @@ a{color:var(--red)}
 .sect--dark .eyebrow{color:#FF7A5C}
 
 h1,h2{margin:0;line-height:1.06;letter-spacing:-.025em;font-weight:800}
-/* Заголовок набирается прописными в display-шрифте, поэтому переносить слова
-   нельзя — перенос рубит слово посередине. Вместо этого держим в H1 короткие
-   слова (самое длинное — «ОТКРОЙТЕ», 8 знаков) и такую нижнюю границу кегля,
-   при которой это слово помещается в колонку на экране 360px. */
-h1{font-family:var(--disp);font-weight:800;font-size:clamp(34px,7.4vw,84px);letter-spacing:-.035em;line-height:.96;text-transform:uppercase}
+/* Заголовок набирается прописными в display-шрифте, переносить слова нельзя —
+   перенос рубит слово посередине. Поэтому кегль привязан не к ширине окна,
+   а к ширине собственной колонки (cqw): длина заголовка сильно зависит от
+   языка, и по vw русский вариант вылезал из колонки на картинку. */
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(30px,11.4cqw,84px);letter-spacing:-.035em;line-height:.96;text-transform:uppercase}
 h2{font-size:clamp(26px,3.9vw,44px);margin-bottom:.5em}
 h3{margin:0 0 8px;font-size:19px;font-weight:700;letter-spacing:-.008em}
 p{margin:0 0 1.05em}
@@ -93,6 +93,8 @@ p{margin:0 0 1.05em}
 .hero{padding-top:clamp(36px,5vw,64px);padding-bottom:clamp(40px,5vw,64px)}
 .hero__in{display:grid;gap:clamp(28px,4vw,52px);align-items:center}
 .hero__in>*{min-width:0}
+/* точка отсчёта для cqw в заголовке — ширина текстовой колонки */
+.hero__in>div:first-child{container-type:inline-size}
 @media(min-width:900px){.hero__in{grid-template-columns:minmax(0,1fr) minmax(0,.92fr)}}
 .hero h1{margin-bottom:20px}
 .hero h1 span{display:block;color:var(--red)}
