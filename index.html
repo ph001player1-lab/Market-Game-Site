@@ -190,6 +190,7 @@
       <p class="lede">Открываете дело или уже управляете им — два часа за игровым столом покажут то, на что в жизни уходят месяцы бизнес-школы и годы работы не на том рынке.</p>
       <div class="btns">
         <button type="button" class="btn" data-lead="">Подать заявку на игру</button>
+        <a class="btn btn--line" href="#calendar">Ближайшие игры</a>
       </div>
     </div>
     <div class="hero__pic">
@@ -435,6 +436,19 @@
   </div>
 </section>
 
+<!-- РАСПИСАНИЕ -->
+<section class="sect sect--dark" id="calendar">
+  <div class="wrap">
+    <span class="eyebrow">РАСПИСАНИЕ</span>
+    <h2>Ближайшие игры</h2>
+    <p class="lede">Игры идут в четырёх потоках: русском, европейском, американском и вьетнамском. Время показано по вашим часам — страница берёт часовой пояс из настроек устройства.</p>
+    <div class="schedule" id="schedule">
+      <p class="mute">Чтобы увидеть расписание, включите JavaScript — или просто оставьте заявку, менеджер назовёт ближайшие даты.</p>
+    </div>
+    <p class="schedule__note"><b>Играть можно в любом потоке.</b> Поток — это язык ведущего и удобный для региона час, а не ограничение по стране. Если ни одно время не подходит, оставьте заявку и напишите, когда вам удобно.</p>
+  </div>
+</section>
+
 <!-- АВТОР -->
 <section class="sect">
   <div class="wrap">
@@ -630,5 +644,40 @@ window.FORM_CONFIG = {
 };
 </script>
 <script src="form.js"></script>
+<script>
+window.SCHEDULE_CONFIG = {
+  locale: 'ru-RU',
+  limit: 8,
+  // Отменённые игры. Строка «2026-01-03» снимает весь день,
+  // «2026-01-03 l12 ru» — только одну игру. Даты в прошлом можно не убирать.
+  exceptions: [],
+  clocks: [
+    { label: 'Лос-Анджелес', tz: 'America/Los_Angeles' },
+    { label: 'Нью-Йорк',     tz: 'America/New_York' },
+    { label: 'Лондон',       tz: 'Europe/London' },
+    { label: 'Москва',       tz: 'Europe/Moscow' },
+    { label: 'Бангкок',      tz: 'Asia/Bangkok' },
+    { label: 'UTC',          tz: 'UTC' }
+  ],
+  leagues: { l12: 'Лига 12', l24: 'Лига 24', l36: 'Лига 36' },
+  streams: {
+    ru: 'русский поток',
+    eu: 'европейский поток',
+    us: 'американский поток',
+    vi: 'вьетнамский поток'
+  },
+  text: {
+    duration:   '{h} ч',
+    yourTime:   'по вашим часам',
+    soonest:    'ближайшая',
+    cta:        'Записаться',
+    empty:      'Расписание обновляется. Оставьте заявку — менеджер назовёт ближайшие даты.',
+    monthCount: 'Игр в ближайшие 30 дней: {n}',
+    decimal:    ',',
+    otherDay:   'в этом городе уже другие сутки'
+  }
+};
+</script>
+<script src="schedule.js"></script>
 </body>
 </html>

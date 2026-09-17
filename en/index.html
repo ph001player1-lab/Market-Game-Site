@@ -190,6 +190,7 @@
       <p class="lede">Starting a business or already running one — two hours at the table show you what otherwise takes months of business school and years of working the wrong market.</p>
       <div class="btns">
         <button type="button" class="btn" data-lead="">Send a request</button>
+        <a class="btn btn--line" href="#calendar">Upcoming games</a>
       </div>
     </div>
     <div class="hero__pic">
@@ -435,6 +436,19 @@
   </div>
 </section>
 
+<!-- SCHEDULE -->
+<section class="sect sect--dark" id="calendar">
+  <div class="wrap">
+    <span class="eyebrow">SCHEDULE</span>
+    <h2>Upcoming games</h2>
+    <p class="lede">Games run in four streams: Europe, the Americas, Russian and Vietnamese. Times are shown on your own clock — the page reads the timezone from your device.</p>
+    <div class="schedule" id="schedule">
+      <p class="mute">Turn on JavaScript to see the schedule — or just send a request and a manager will name the nearest dates.</p>
+    </div>
+    <p class="schedule__note"><b>You can join any stream.</b> A stream is the host's language and an hour that suits that region, not a restriction by country. If none of the times work, send a request and tell us when you are free.</p>
+  </div>
+</section>
+
 <!-- AUTHOR -->
 <section class="sect">
   <div class="wrap">
@@ -630,5 +644,41 @@ window.FORM_CONFIG = {
 };
 </script>
 <script src="../form.js"></script>
+<script>
+window.SCHEDULE_CONFIG = {
+  locale: 'en-US',
+  hour12: true,
+  limit: 8,
+  // Cancelled games. "2026-01-03" drops the whole day,
+  // "2026-01-03 l12 ru" drops a single game. Past dates can stay in the list.
+  exceptions: [],
+  clocks: [
+    { label: 'Los Angeles', tz: 'America/Los_Angeles' },
+    { label: 'New York',    tz: 'America/New_York' },
+    { label: 'London',      tz: 'Europe/London' },
+    { label: 'Moscow',      tz: 'Europe/Moscow' },
+    { label: 'Bangkok',     tz: 'Asia/Bangkok' },
+    { label: 'UTC',         tz: 'UTC' }
+  ],
+  leagues: { l12: 'League 12', l24: 'League 24', l36: 'League 36' },
+  streams: {
+    ru: 'Russian stream',
+    eu: 'Europe stream',
+    us: 'Americas stream',
+    vi: 'Vietnamese stream'
+  },
+  text: {
+    duration:   '{h} h',
+    yourTime:   'your local time',
+    soonest:    'next up',
+    cta:        'Take a seat',
+    empty:      'The schedule is being updated. Send a request and a manager will name the nearest dates.',
+    monthCount: 'Games in the next 30 days: {n}',
+    decimal:    '.',
+    otherDay:   'a different calendar day in this city'
+  }
+};
+</script>
+<script src="../schedule.js"></script>
 </body>
 </html>

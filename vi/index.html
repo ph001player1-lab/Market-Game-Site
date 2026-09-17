@@ -190,6 +190,7 @@
       <p class="lede">Bạn sắp khởi nghiệp hay đã đang điều hành — hai giờ ngồi bàn chơi cho bạn thấy điều mà ngoài đời phải trả bằng nhiều tháng học trường kinh doanh và nhiều năm loay hoay với một thị trường không dành cho mình.</p>
       <div class="btns">
         <button type="button" class="btn" data-lead="">Gửi đăng ký</button>
+        <a class="btn btn--line" href="#calendar">Các ván sắp tới</a>
       </div>
     </div>
     <div class="hero__pic">
@@ -435,6 +436,19 @@
   </div>
 </section>
 
+<!-- LỊCH -->
+<section class="sect sect--dark" id="calendar">
+  <div class="wrap">
+    <span class="eyebrow">LỊCH CHƠI</span>
+    <h2>Các ván sắp tới</h2>
+    <p class="lede">Các ván diễn ra ở bốn nhóm: tiếng Việt, châu Âu, châu Mỹ và tiếng Nga. Giờ hiển thị theo đồng hồ của bạn — trang tự lấy múi giờ từ thiết bị.</p>
+    <div class="schedule" id="schedule">
+      <p class="mute">Hãy bật JavaScript để xem lịch — hoặc cứ gửi đăng ký, quản lý sẽ báo những ngày gần nhất.</p>
+    </div>
+    <p class="schedule__note"><b>Bạn có thể tham gia bất kỳ nhóm nào.</b> Nhóm là ngôn ngữ của người dẫn và khung giờ tiện cho khu vực đó, không phải giới hạn theo quốc gia. Nếu không giờ nào hợp, hãy gửi đăng ký và cho biết lúc nào bạn rảnh.</p>
+  </div>
+</section>
+
 <!-- TÁC GIẢ -->
 <section class="sect">
   <div class="wrap">
@@ -630,5 +644,40 @@ window.FORM_CONFIG = {
 };
 </script>
 <script src="../form.js"></script>
+<script>
+window.SCHEDULE_CONFIG = {
+  locale: 'vi-VN',
+  limit: 8,
+  // Các ván bị huỷ. "2026-01-03" bỏ cả ngày,
+  // "2026-01-03 l12 ru" chỉ bỏ một ván. Ngày đã qua để lại cũng không sao.
+  exceptions: [],
+  clocks: [
+    { label: 'Los Angeles', tz: 'America/Los_Angeles' },
+    { label: 'New York',    tz: 'America/New_York' },
+    { label: 'London',      tz: 'Europe/London' },
+    { label: 'Moskva',      tz: 'Europe/Moscow' },
+    { label: 'Hà Nội',      tz: 'Asia/Ho_Chi_Minh' },
+    { label: 'UTC',         tz: 'UTC' }
+  ],
+  leagues: { l12: 'Hạng 12', l24: 'Hạng 24', l36: 'Hạng 36' },
+  streams: {
+    ru: 'nhóm tiếng Nga',
+    eu: 'nhóm châu Âu',
+    us: 'nhóm châu Mỹ',
+    vi: 'nhóm tiếng Việt'
+  },
+  text: {
+    duration:   '{h} giờ',
+    yourTime:   'giờ của bạn',
+    soonest:    'gần nhất',
+    cta:        'Đăng ký',
+    empty:      'Lịch đang được cập nhật. Hãy gửi đăng ký, quản lý sẽ báo những ngày gần nhất.',
+    monthCount: 'Số ván trong 30 ngày tới: {n}',
+    decimal:    ',',
+    otherDay:   'ở thành phố này đã sang ngày khác'
+  }
+};
+</script>
+<script src="../schedule.js"></script>
 </body>
 </html>

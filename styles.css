@@ -237,6 +237,42 @@ p{margin:0 0 1.05em}
 .league .btn{margin-top:auto;text-align:center}
 .leaguenote{margin:clamp(20px,3vw,28px) 0 0;font-size:16px;color:var(--mute);max-width:70ch}
 .leaguenote b{color:var(--ink);font-weight:700}
+
+/* --- календарь игр ---
+   Список собирается скриптом, поэтому разметка описана в schedule.js,
+   а здесь — только оформление. Блок тёмный: он единственный на странице
+   меняется сам по себе, и его стоит отделить от остального. */
+.schedule{margin-top:clamp(26px,4vw,40px)}
+.schedule__count{font-size:13.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#A9A9B2;margin:0 0 16px}
+.games{display:grid;gap:8px}
+.game{display:grid;gap:6px 20px;align-items:start;padding:17px 20px;border:1px solid rgba(242,241,236,.16);background:rgba(242,241,236,.035)}
+.game--next{border-color:var(--red);background:rgba(216,66,42,.1)}
+.game h3{margin:0 0 6px;font-size:18px;color:var(--paper)}
+.game__date{display:block;font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.02em;line-height:1.2;color:var(--paper)}
+/* Intl отдаёт день недели со строчной («суббота, 19 сентября»). capitalize
+   поднял бы и «Сентября» тоже, поэтому трогаем только первую букву. */
+.game__date::first-letter{text-transform:uppercase}
+.game__rel{display:block;font-size:13.5px;color:#A9A9B2;margin-top:3px}
+.game__flag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#FFF6F3;background:var(--red);padding:3px 8px;margin-bottom:9px}
+.game__time{margin:0;font-size:15.5px;color:var(--paper)}
+/* Шесть городов ровной сеткой: в строку они не помещаются, а перенос
+   «пять и один» смотрится обрывом. */
+.game__clocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 12px;margin:9px 0 0;font-size:13px;color:#A9A9B2}
+.game__clocks b{font-weight:700;color:#8C8C96;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+/* ±1 — в этом городе уже другие сутки */
+.game__clocks i{font-style:normal;color:#FF7A5C;font-size:10.5px;font-weight:700;vertical-align:super;margin-left:1px;letter-spacing:0}
+.game__go .btn{padding:12px 22px;font-size:15px;white-space:nowrap}
+/* на узком экране кнопка занимает всю ширину, иначе она болтается в пустоте */
+.game__go{margin-top:6px}
+.game__go .btn{width:100%;text-align:center}
+@media(min-width:820px){
+  .game{grid-template-columns:175px minmax(0,1fr) auto;gap:20px}
+  .game__clocks{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .game__go{margin-top:0;align-self:center}
+  .game__go .btn{width:auto}
+}
+.schedule__note{margin:clamp(18px,2.6vw,26px) 0 0;font-size:15.5px;color:#A9A9B2;max-width:70ch}
+.schedule__note b{color:var(--paper);font-weight:700}
 .sect--dark .leaguenote b{color:var(--paper)}
 
 /* --- FAQ --- */
