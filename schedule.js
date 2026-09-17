@@ -180,6 +180,70 @@
     return T.duration.replace('{h}', String(h).replace('.', T.decimal || ','));
   }
 
+  /**
+   * Время в формате «2026-09-19T12:00:00+03:00» — с поясом города потока.
+   * Поисковикам нужен именно он: по чистому UTC они показывают время игры
+   * не в том виде, в каком его назначил ведущий.
+   */
+  function isoWithOffset(at, tz) {
+    // zoneOffset считает от момента с миллисекундами, поэтому смещение может
+    // выйти не целым числом минут. Поясов с дробными минутами не бывает.
+    var off = Math.round(zoneOffset(at.getTime(), tz) / 60000) * 60000;
+    var d = dateIn(at.getTime(), tz);
+    var local = new Date(at.getTime() + off);
+    function p2(n) { return String(n).padStart(2, '0'); }
+    var sign = off < 0 ? '-' : '+';
+    var abs = Math.abs(off) / 60000;
+    return iso(d.y, d.m, d.d) + 'T' +
+      p2(local.getUTCHours()) + ':' + p2(local.getUTCMinutes()) + ':00' +
+      sign + p2(Math.floor(abs / 60)) + ':' + p2(abs % 60);
+  }
+
+  /**
+   * Разметка Event для поисковиков. Собирается тем же списком, что и
+   * видимый блок, поэтому не может разойтись с ним — а статическая
+   * разметка в <head> устарела бы в первый же месяц.
+   */
+  function markup(games) {
+    var seo = C.seo;
+    if (!seo) return;
+    var node = document.getElementById('schedule-ld');
+    if (!node) {
+      node = document.createElement('script');
+      node.type = 'application/ld+json';
+      node.id = 'schedule-ld';
+      document.head.appendChild(node);
+    }
+    var rule = {};
+    RULES.forEach(function (r) { rule[r.league + r.stream] = r; });
+
+    node.textContent = JSON.stringify(games.map(function (g) {
+      var r = rule[g.league + g.stream];
+      var e = {
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        name: seo.name + ' — ' + C.leagues[g.league] + ' (' + C.streams[g.stream] + ')',
+        startDate: isoWithOffset(g.at, r.tz),
+        endDate: isoWithOffset(g.ends, r.tz),
+        eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+        eventStatus: 'https://schema.org/EventScheduled',
+        location: { '@type': 'VirtualLocation', url: seo.url },
+        organizer: { '@type': 'Organization', name: seo.organizer, url: seo.url },
+        url: seo.url + '#calendar'
+      };
+      if (seo.prices && seo.prices[g.league] != null) {
+        e.offers = {
+          '@type': 'Offer',
+          price: String(seo.prices[g.league]),
+          priceCurrency: seo.currency,
+          availability: 'https://schema.org/InStock',
+          url: seo.url + '#leagues'
+        };
+      }
+      return e;
+    }));
+  }
+
   function render() {
     var now = new Date();
     var games = upcoming(now);
@@ -232,6 +296,8 @@
     host.innerHTML =
       '<p class="schedule__count">' + esc(T.monthCount.replace('{n}', month)) + '</p>' +
       '<div class="games">' + rows + '</div>';
+
+    markup(games.slice(0, LIMIT));
   }
 
   render();
