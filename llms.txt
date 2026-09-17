@@ -1,6 +1,6 @@
 # Capture the Market (Захвати рынок)
 
-> A facilitated business simulation where teams compete for one shared market
+> A team business simulation where crews compete for one shared market
 > over 12, 24 or 36 game months, all played in a single session. Built both
 > for people about to start a business and for owners already running one,
 > who would rather make their expensive mistakes on a game board than with
@@ -14,7 +14,7 @@ and Vietnamese.
 Several teams sit down around a single market and compete for the same
 10,000 customers. Each turn is one game month, three to five minutes long.
 Every team sets a price, invests in quality, picks advertising channels,
-adds tables, hires staff and takes loans. A model — not a facilitator —
+adds tables, hires staff and takes loans. A model — not a host —
 then distributes the customers according to how attractive each team's
 combination of price, quality, advertising and capacity looks.
 

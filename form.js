@@ -98,9 +98,15 @@
     });
   }
 
-  function open(league) {
+  // Из календаря форма открывается кнопкой конкретной игры. Дату и поток
+  // никуда не показываем, но передаём менеджеру: без этого заявка «Лига 24»
+  // не говорит, на какую из четырёх еженедельных игр человек нацелился.
+  var pickedGame = '';
+
+  function open(league, game) {
     if (!dialog) build();
     reset();
+    pickedGame = game || '';
     if (league && C.leagues[league]) form.league.value = league;
     lastFocus = doc.activeElement;
     openedAt = Date.now();
@@ -112,6 +118,7 @@
 
   function reset() {
     form.reset();
+    pickedGame = '';
     submitBtn.disabled = false;
     submitBtn.textContent = T.submit;
     setStatus('', '');
@@ -160,6 +167,7 @@
       phone: phone,
       telegram: tg,
       league: C.leagues[form.league.value] || '',
+      game: pickedGame,
       company: form.company.value,
       elapsed: Date.now() - openedAt,
       lang: C.lang,
@@ -243,6 +251,6 @@
     var trigger = event.target.closest('[data-lead]');
     if (!trigger) return;
     event.preventDefault();
-    open(trigger.getAttribute('data-lead'));
+    open(trigger.getAttribute('data-lead'), trigger.getAttribute('data-game'));
   });
 })();

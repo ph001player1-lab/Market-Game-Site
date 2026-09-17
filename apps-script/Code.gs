@@ -26,7 +26,7 @@
 var SHEET_LEADS = 'Лиды';
 
 var HEADERS = [
-  'Дата', 'Имя', 'Телефон', 'Telegram', 'Лига',
+  'Дата', 'Имя', 'Телефон', 'Telegram', 'Лига', 'Игра',
   'Язык', 'Страница', 'Источник', 'UTM', 'IP-метка'
 ];
 
@@ -57,6 +57,7 @@ function doPost(e) {
       phone: phone,
       telegram: normalizeTelegram(telegram),
       league: clean(data.league, 40),
+      game: clean(data.game, 120),
       lang: clean(data.lang, 10),
       page: clean(data.page, 200),
       referrer: clean(data.referrer, 200),
@@ -94,7 +95,7 @@ function appendLead(row) {
   try {
     var sheet = getSheet();
     sheet.appendRow([
-      row.date, row.name, row.phone, row.telegram, row.league,
+      row.date, row.name, row.phone, row.telegram, row.league, row.game,
       row.lang, row.page, row.referrer, row.utm, ''
     ]);
   } finally {
@@ -110,6 +111,14 @@ function getSheet() {
     sheet.appendRow(HEADERS);
     sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
     sheet.setFrozenRows(1);
+    return sheet;
+  }
+
+  // Лист мог остаться от прошлой версии кода, где колонок было меньше.
+  // Тогда заголовок нужно дописать, иначе данные поедут не под теми названиями.
+  var width = sheet.getLastColumn();
+  if (width < HEADERS.length) {
+    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold');
   }
   return sheet;
 }
@@ -184,6 +193,7 @@ function notifyTelegram(row) {
     row.phone ? 'Телефон: ' + esc(row.phone) : '',
     row.telegram ? 'Telegram: ' + esc(row.telegram) : '',
     row.league ? 'Лига: ' + esc(row.league) : '',
+    row.game ? 'Игра: ' + esc(row.game) : '',
     'Язык страницы: ' + esc(row.lang || '—'),
     row.utm ? 'Метки: ' + esc(row.utm) : '',
     row.referrer ? 'Пришёл с: ' + esc(row.referrer) : ''
@@ -317,6 +327,7 @@ function testLead() {
     phone: '+7 000 000-00-00',
     telegram: '@test',
     league: 'Лига 12 · Старт — $25',
+    game: 'суббота, 3 января · Лига 12 · Русский',
     lang: 'ru',
     page: 'проверка из редактора',
     referrer: '',

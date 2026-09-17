@@ -37,14 +37,14 @@
       "founder": {
         "@type": "Person",
         "name": "Nikolay Vladimirovich Bulenkov",
-        "jobTitle": "Creator of facilitated business games",
+        "jobTitle": "Creator of team business games",
         "alumniOf": "Bauman Moscow State Technical University"
       }
     },
     {
       "@type": "Product",
       "@id": "https://marketgame.club/en/#game",
-      "name": "Capture the Market — facilitated business simulation",
+      "name": "Capture the Market — team business simulation",
       "description": "A team business game: 4 to 20 teams compete for one shared market over 12, 24 or 36 game turns in a single session. A model distributes 10,000 customers by price, quality, advertising and capacity. Whoever ends with the most cash wins.",
       "brand": { "@id": "https://marketgame.club/#org" },
       "image": "https://marketgame.club/og.jpg",
@@ -156,7 +156,7 @@
           "name": "I am on my own, without a team. Can I still play?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. A team of one is still a team, and the price is the same. You will be playing against the other participants, not against the facilitator."
+            "text": "Yes. A team of one is still a team, and the price is the same. You will be playing against the other participants, not against the host."
           }
         }
       ]
@@ -185,11 +185,12 @@
 <section class="wrap hero">
   <div class="hero__in">
     <div>
-      <span class="eyebrow">CAPTURE THE MARKET · FACILITATED BUSINESS SIMULATION</span>
+      <span class="eyebrow">CAPTURE THE MARKET · TEAM BUSINESS GAME</span>
       <h1>Test your strategy<span>on a live market</span></h1>
-      <p class="lede">Starting a business or already running one — two hours at the table show you what otherwise takes months of business school and years of working the wrong market.</p>
+      <p class="lede">Starting a business or already running one — two hours at the table show you what otherwise takes months of business school and years of work.</p>
       <div class="btns">
         <button type="button" class="btn" data-lead="">Send a request</button>
+        <a class="btn btn--line" href="#calendar">Upcoming games</a>
       </div>
     </div>
     <div class="hero__pic">
@@ -208,10 +209,9 @@
       <h2>How the business game works</h2>
     </div>
     <div class="prose">
-      <p>Several companies sit down around one market and start competing for the same customers. Each turn is a game month. You set the price, invest in quality, choose advertising channels, add tables, hire people, take out a loan.</p>
-      <p>Then the market does the maths on its own. Ten thousand customers are distributed among all the players — not evenly, but depending on whose combination of price, quality, advertising and capacity looks more attractive to them. That is decided by the model, not by the facilitator.</p>
-      <p>You get your own report: revenue, costs, profit, cash on hand and market share. Then the next month begins.</p>
-      <p>At the end of the game, the winner is whoever has the most cash in the register.</p>
+      <p>Several companies play on one market. The customers are shared, and every player has to pull them their way. Each turn is a game month: you set the price, invest in quality, choose advertising channels, add tables, hire people, take loans. Whether a customer walks in or goes to a competitor depends on what you decided. Exactly like a live market — and who pulled whom is worked out by the model, not by the host.</p>
+      <p>Every month there is a financial report. You see the result of your own moves and, more importantly, of your competitors': revenue, costs, profit, the going price on the market, cash in the register and market share. Then the debrief, a new strategy and the next month.</p>
+      <p>The winner is whoever ends up with the most cash in the register.</p>
     </div>
     </div>
     <figure class="figure"><img src="../one-market-en.jpg" width="1150" height="647" alt="One market for everyone: a flow of 10,000 customers passes through the market model and is distributed among competing restaurants. One turn equals one month, a game year is twelve months" loading="lazy"></figure>
@@ -227,6 +227,8 @@
       <p>Here is the whole game on one screen. Imagine the red restaurant is you. Drop the price and the flow comes your way, but every bill gets thinner. Raise quality and people come back, so you can hold a higher price. Pour money into advertising and awareness grows, but the cash leaves the register right now.</p>
       <p>Move the levers — price, quality, advertising, seating — and watch customers flow between the five restaurants and what is left for you in the end: revenue, profit, market share. Nobody hands out grades. Only the market counts. A live game works the same way — just twelve months in a row, with players like you at the next table. The numbers here are simplified, but the logic is exactly the same.</p>
     </div>
+
+    <p class="simcta"><b>Try it right now.</b> Below is a demo calculator running the same model: move the levers and see what happens. All five restaurants start with the same $50,000 in the register — after that, only the decisions make the difference.</p>
 
     <div class="sim">
       <div class="sim__panel">
@@ -282,7 +284,7 @@
     <div class="steps">
       <article><h3>There will be no briefing</h3><p>You sit down and start playing straight away. The mechanics become clear within the first few months — just like in business, where nobody hands you a manual before opening and nobody asks whether you are allowed to make mistakes.</p></article>
       <article><h3>You make the decisions</h3><p>Three to five minutes per turn. Price, quality, advertising channels and budget, tables, staff, loans. What your competitors are doing, you do not know.</p></article>
-      <article><h3>The market counts</h3><p>The model distributes customers among all the players and recalculates the money. No grades from the facilitator and no sympathies — only economics.</p></article>
+      <article><h3>The market counts</h3><p>The model distributes customers among all the players and recalculates the money. No grades from the host and no favourites — only economics.</p></article>
       <article><h3>You see the result</h3><p>A report on your company: revenue, costs, profit, cash, market share. Plus a shared table showing who has pulled ahead.</p></article>
       <article><h3>Next month</h3><p>Strategy shows itself across a series of turns, not in a single one. A mistake in month three catches up with you in month seven, and that is the most useful thing a simulation gives you.</p></article>
       <article><h3>The final debrief</h3><p>After the last month we go through who did what and why it turned out this way. This is where most of the learning happens.</p></article>
@@ -435,6 +437,19 @@
   </div>
 </section>
 
+<!-- SCHEDULE -->
+<section class="sect sect--dark" id="calendar">
+  <div class="wrap">
+    <span class="eyebrow">SCHEDULE</span>
+    <h2>Upcoming games</h2>
+    <p class="lede">Games run in four streams: Europe, the Americas, Russian and Vietnamese. Times are shown on your own clock — the page reads the timezone from your device.</p>
+    <div class="schedule" id="schedule">
+      <p class="mute">Turn on JavaScript to see the schedule — or just send a request and a manager will name the nearest dates.</p>
+    </div>
+    <p class="schedule__note"><b>You can join any stream.</b> A stream is the host's language and an hour that suits that region, not a restriction by country. If none of the times work, send a request and tell us when you are free.</p>
+  </div>
+</section>
+
 <!-- AUTHOR -->
 <section class="sect">
   <div class="wrap">
@@ -445,7 +460,7 @@
       </div>
       <div>
         <h2 style="margin-bottom:.3em">Nikolay Vladimirovich Bulenkov</h2>
-        <p class="lede">Creator of facilitated business games and corporate training programmes. More than twenty years in sales, management and business development.</p>
+        <p class="lede">Creator of team business games and corporate training programmes. More than twenty years in sales, management and business development.</p>
         <ul class="regs">
           <li>
             <b>2014</b>
@@ -534,7 +549,7 @@
       </details>
       <details>
         <summary>I am on my own, without a team. Can I still play?</summary>
-        <p class="faq__a">Yes. A team of one is still a team, and the price is the same. You will be playing against the other participants, not against the facilitator.</p>
+        <p class="faq__a">Yes. A team of one is still a team, and the price is the same. You will be playing against the other participants, not against the host.</p>
       </details>
     </div>
   </div>
@@ -630,5 +645,48 @@ window.FORM_CONFIG = {
 };
 </script>
 <script src="../form.js"></script>
+<script>
+window.SCHEDULE_CONFIG = {
+  locale: 'en-US',
+  hour12: true,
+  limit: 8,
+  // Cancelled games. "2026-01-03" drops the whole day,
+  // "2026-01-03 l12 ru" drops a single game. Past dates can stay in the list.
+  exceptions: [],
+  clocks: [
+    { label: 'Los Angeles', tz: 'America/Los_Angeles' },
+    { label: 'New York',    tz: 'America/New_York' },
+    { label: 'London',      tz: 'Europe/London' },
+    { label: 'Moscow',      tz: 'Europe/Moscow' },
+    { label: 'Bangkok',     tz: 'Asia/Bangkok' },
+    { label: 'UTC',         tz: 'UTC' }
+  ],
+  seo: {
+    name: 'Capture the Market',
+    organizer: 'Capture the Market',
+    url: 'https://marketgame.club/en/',
+    currency: 'USD',
+    prices: { l12: 25, l24: 100, l36: 3000 }
+  },
+  leagues: { l12: 'League 12', l24: 'League 24', l36: 'League 36' },
+  streams: {
+    ru: 'Russian stream',
+    eu: 'Europe stream',
+    us: 'Americas stream',
+    vi: 'Vietnamese stream'
+  },
+  text: {
+    duration:   '{h} h',
+    yourTime:   'your local time',
+    soonest:    'next up',
+    cta:        'Take a seat',
+    empty:      'The schedule is being updated. Send a request and a manager will name the nearest dates.',
+    monthCount: 'Games in the next 30 days: {n}',
+    decimal:    '.',
+    otherDay:   'a different calendar day in this city'
+  }
+};
+</script>
+<script src="../schedule.js"></script>
 </body>
 </html>
