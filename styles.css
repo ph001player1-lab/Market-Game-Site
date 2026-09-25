@@ -251,6 +251,14 @@ button{font-family:inherit}
 .schedule{margin-top:clamp(26px,4vw,40px)}
 .schedule__count{font-size:13.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#A9A9B2;margin:0 0 16px}
 .games{display:grid;gap:8px}
+/* фильтр по регионам над списком игр */
+.schedule__filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.chip{font:inherit;font-size:14px;font-weight:700;padding:8px 14px;border:1.5px solid rgba(242,241,236,.3);border-radius:999px;background:transparent;color:var(--paper);cursor:pointer;transition:background .15s,border-color .15s}
+.chip:hover{border-color:var(--paper)}
+.chip--on{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.game__kind{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#FF7A5C;margin-bottom:6px}
+/* список штатов пояса: длинный, поэтому мелко и приглушённо */
+.game__states{margin:-2px 0 6px;font-size:13px;line-height:1.5;color:#A9A9B2;letter-spacing:.02em}
 .game{display:grid;gap:6px 20px;align-items:start;padding:17px 20px;border:1px solid rgba(242,241,236,.16);background:rgba(242,241,236,.035)}
 .game--next{border-color:var(--red);background:rgba(216,66,42,.1)}
 .game h3{margin:0 0 6px;font-size:18px;color:var(--paper)}
