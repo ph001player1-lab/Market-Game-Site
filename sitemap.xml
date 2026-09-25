@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
-  <url>
-    <loc>https://marketgame.club/</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://marketgame.club/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://marketgame.club/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://marketgame.club/"/>
-  </url>
-
-  <url>
-    <loc>https://marketgame.club/en/</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://marketgame.club/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://marketgame.club/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://marketgame.club/"/>
-  </url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://marketgame.club/</loc></url>
+  <url><loc>https://marketgame.club/phuket/</loc></url>
   <url><loc>https://marketgame.club/privacy.html</loc></url>
-  <url><loc>https://marketgame.club/en/privacy.html</loc></url>
-
-
-  <!-- Пхукетское сообщество: своя языковая группа, не перевод главной -->
-  <url>
-    <loc>https://marketgame.club/phuket/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://marketgame.club/phuket/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://marketgame.club/phuket/ru/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://marketgame.club/phuket/"/>
-  </url>
-  <url>
-    <loc>https://marketgame.club/phuket/ru/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://marketgame.club/phuket/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://marketgame.club/phuket/ru/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://marketgame.club/phuket/"/>
-  </url>
-
 </urlset>

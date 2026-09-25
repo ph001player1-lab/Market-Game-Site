@@ -6,7 +6,7 @@
 > who would rather make their expensive mistakes on a game board than with
 > their own money.
 
-Run by Nikolay Bulenkov. Available online and offline, in Russian and English.
+Run by Nikolay Bulenkov. Available online and offline. The site is in English.
 
 ## What it is
 
@@ -90,8 +90,8 @@ Moscow State Technical University.
 
 ## Pages
 
-- https://marketgame.club/ — Russian
-- https://marketgame.club/en/ — English
+- https://marketgame.club/ — the game
+- https://marketgame.club/phuket/ — Phuket Business League
 - https://marketgame.club/privacy.html — privacy policy
 
 ## Contact
@@ -104,6 +104,6 @@ An offline community of entrepreneurs on Phuket, modeled on American chambers
 of commerce. Members meet 2–6 times a month: business games, workshops, guest
 talks, business breakfasts and evening mixers. Meetings are open, with no
 prepayment; games run in two leagues and are paid per team at the meeting:
-League 12 — 850 THB ($25), League 24 — 3,350 THB ($100). A meeting needs at
+League 12 — 1,000 THB, League 24 — 3,500 THB. A meeting needs at
 least four participants. The venue address is sent personally after sign-up.
-Pages in English and Russian: https://marketgame.club/phuket/
+Page: https://marketgame.club/phuket/
