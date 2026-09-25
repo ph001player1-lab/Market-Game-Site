@@ -1,6 +1,6 @@
-/* Вёрстка сайта «Захвати рынок». Одна на все языковые версии.
+/* Вёрстка сайта «Рыночек Порешает». Одна на все языковые версии.
    Файл лежит в корне, поэтому пути к шрифтам ниже работают
-   и для /, и для /en/, и для /vi/. */
+   и для /, и для /en/, и для /phuket/. */
 
 @font-face{font-family:'Unbounded';src:url('Unbounded.woff2') format('woff2');font-weight:200 900;font-style:normal;font-display:swap}
 @font-face{font-family:'Manrope';src:url('Manrope.woff2') format('woff2');font-weight:200 800;font-style:normal;font-display:swap}

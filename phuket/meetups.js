@@ -27,8 +27,10 @@
   // nth: какая по счёту такая неделя месяца; -1 — последняя.
   // chance: доля месяцев, в которые правило срабатывает; без него — каждый месяц.
   var RULES = [
-    { id: 'game-sat',  format: 'game',      weekday: 6, nth: 2,  time: '14:00', hours: 2 },
-    { id: 'game-tue',  format: 'game',      weekday: 2, nth: 4,  time: '11:00', hours: 2,   chance: 0.6 },
+    // игры идут в двух лигах, каждая раз в месяц: Лига 12 — для тех, кто
+    // только собирается открыть дело, Лига 24 — для действующего бизнеса
+    { id: 'game-sat',  format: 'game', league: 'l12', weekday: 6, nth: 2, time: '14:00', hours: 2 },
+    { id: 'game-tue',  format: 'game', league: 'l24', weekday: 2, nth: 4, time: '11:00', hours: 2.5 },
     { id: 'breakfast', format: 'breakfast', weekday: 3, nth: 1,  time: '09:00', hours: 1.5, chance: 0.75 },
     { id: 'workshop',  format: 'workshop',  weekday: 4, nth: 3,  time: '18:30', hours: 2,   chance: 0.6 },
     { id: 'talk',      format: 'talk',      weekday: 2, nth: 2,  time: '18:30', hours: 1.5, chance: 0.5 },
@@ -124,7 +126,7 @@
         if (at <= now) return;
         out.push({
           at: at, ends: new Date(at.getTime() + r.hours * 3600000),
-          id: r.id, format: r.format, hours: r.hours,
+          id: r.id, format: r.format, league: r.league || '', hours: r.hours,
           topic: pick((C.topics || {})[r.format], topicIndex(y, m)),
           managerTopic: pick(((C.manager || {}).topics || {})[r.format], topicIndex(y, m))
         });
@@ -138,7 +140,7 @@
       if (at <= now || at - now > HORIZON_DAYS * 86400000) return;
       out.push({
         at: at, ends: new Date(at.getTime() + (e.hours || 2) * 3600000),
-        id: 'extra', format: e.format, hours: e.hours || 2,
+        id: 'extra', format: e.format, league: e.league || '', hours: e.hours || 2,
         topic: e.topic || '', managerTopic: e.topic || ''
       });
     });
@@ -170,6 +172,7 @@
 
   function managerLabel(g) {
     var name = MG.formats[g.format] || (C.formats[g.format] || {}).name || g.format;
+    if (g.league && MG.leagues && MG.leagues[g.league]) name += ' — ' + MG.leagues[g.league];
     return mgDayFmt.format(g.at) + ' · ' + mgTimeFmt.format(g.at) + ' · ' + name +
            (g.managerTopic ? ' — ' + g.managerTopic : '');
   }
@@ -196,7 +199,10 @@
     var f = C.formats[g.format] || { name: g.format };
     var dleft = daysUntil(g.at, now);
     var when = rel && dleft <= 14 ? rel.format(dleft, 'day') : '';
-    var title = g.topic || f.title || f.name;
+    // у игры заголовок и описание — от лиги: у лиг разная цена и аудитория
+    var L = g.league && C.leagues ? C.leagues[g.league] : null;
+    var title = (L && L.title) || g.topic || f.title || f.name;
+    var blurb = (L && L.blurb) || f.blurb;
     var gameLabel = managerLabel(g);
 
     return '' +
@@ -213,7 +219,7 @@
             esc(timeFmt.format(g.at)) + '–' + esc(timeFmt.format(g.ends)) +
             ' · ' + esc(hoursLabel(g.hours)) +
             (when ? ' · <em>' + esc(when) + '</em>' : '') + '</p>' +
-          (!compact && f.blurb ? '<p class="meet__blurb">' + esc(f.blurb) + '</p>' : '') +
+          (!compact && blurb ? '<p class="meet__blurb">' + esc(blurb) + '</p>' : '') +
         '</div>' +
         '<div class="meet__go">' +
           '<button type="button" class="btn' + (compact ? ' btn--sm' : '') + '" data-lead="pk_meet" ' +
@@ -241,10 +247,11 @@
     }
     node.textContent = JSON.stringify(games.map(function (g) {
       var f = C.formats[g.format] || { name: g.format };
+      var L = g.league && C.leagues ? C.leagues[g.league] : null;
       var e = {
         '@context': 'https://schema.org',
         '@type': 'Event',
-        name: seo.name + ' — ' + (g.topic ? f.name + ': ' + g.topic : f.name),
+        name: seo.name + ' — ' + (L ? L.title : g.topic ? f.name + ': ' + g.topic : f.name),
         startDate: isoLocal(g.at),
         endDate: isoLocal(g.ends),
         eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
@@ -258,10 +265,11 @@
         organizer: { '@type': 'Organization', name: seo.name, url: seo.url },
         url: seo.url + '#calendar'
       };
-      if (f.blurb) e.description = f.blurb;
-      if (seo.prices && seo.prices[g.format] != null) {
+      if ((L && L.blurb) || f.blurb) e.description = (L && L.blurb) || f.blurb;
+      var price = seo.prices ? seo.prices[g.league || g.format] : null;
+      if (price != null) {
         e.offers = {
-          '@type': 'Offer', price: String(seo.prices[g.format]),
+          '@type': 'Offer', price: String(price),
           priceCurrency: seo.currency, availability: 'https://schema.org/InStock',
           url: seo.url + '#calendar'
         };
