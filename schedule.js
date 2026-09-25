@@ -24,24 +24,49 @@
 
   // Сетка игр. weekday: 0 — воскресенье … 6 — суббота.
   // nth заполняется только для ежемесячных игр: 1 — первая такая-то неделя месяца.
+  // Время — местное для города потока, поэтому переход на летнее время его не сдвигает.
+  //
+  // Потоки: международный (английский, по Лондону), четыре часовых пояса США
+  // (в каждом — свой список штатов, он в SCHEDULE_CONFIG.states) и отдельные
+  // штаты. Название и группа потока для фильтра — тоже в SCHEDULE_CONFIG.
+  var ET = 'America/New_York', CT = 'America/Chicago', MT = 'America/Denver',
+      PT = 'America/Los_Angeles', AZ = 'America/Phoenix', LON = 'Europe/London';
   var RULES = [
-    // Лига 12 · 2 часа · еженедельно
-    { league: 'l12', stream: 'ru', weekday: 3, time: '19:00', tz: 'Europe/Moscow',       hours: 2 },
-    { league: 'l12', stream: 'eu', weekday: 4, time: '19:00', tz: 'Europe/London',       hours: 2 },
-    { league: 'l12', stream: 'us', weekday: 6, time: '11:00', tz: 'America/New_York',    hours: 2 },
-    { league: 'l12', stream: 'vi', weekday: 0, time: '15:00', tz: 'Asia/Ho_Chi_Minh',    hours: 2 },
+    // --- еженедельно: международный поток и четыре пояса, Лиги 12 и 24
+    { league: 'l12', stream: 'intl',    weekday: 4, time: '19:00', tz: LON, hours: 2 },
+    { league: 'l24', stream: 'intl',    weekday: 2, time: '19:00', tz: LON, hours: 2.5 },
+    { league: 'l12', stream: 'eastern', weekday: 3, time: '19:00', tz: ET,  hours: 2 },
+    { league: 'l24', stream: 'eastern', weekday: 6, time: '11:00', tz: ET,  hours: 2.5 },
+    { league: 'l12', stream: 'central', weekday: 2, time: '19:00', tz: CT,  hours: 2 },
+    { league: 'l24', stream: 'central', weekday: 4, time: '19:00', tz: CT,  hours: 2.5 },
+    { league: 'l12', stream: 'mountain', weekday: 6, time: '11:00', tz: MT, hours: 2 },
+    { league: 'l24', stream: 'mountain', weekday: 3, time: '19:00', tz: MT, hours: 2.5 },
+    { league: 'l12', stream: 'pacific', weekday: 4, time: '19:00', tz: PT,  hours: 2 },
+    { league: 'l24', stream: 'pacific', weekday: 6, time: '10:00', tz: PT,  hours: 2.5 },
 
-    // Лига 24 · 2,5 часа · еженедельно
-    { league: 'l24', stream: 'eu', weekday: 2, time: '19:00', tz: 'Europe/London',       hours: 2.5 },
-    { league: 'l24', stream: 'us', weekday: 3, time: '19:00', tz: 'America/New_York',    hours: 2.5 },
-    { league: 'l24', stream: 'ru', weekday: 6, time: '12:00', tz: 'Europe/Moscow',       hours: 2.5 },
-    { league: 'l24', stream: 'vi', weekday: 6, time: '19:30', tz: 'Asia/Ho_Chi_Minh',    hours: 2.5 },
+    // --- раз в месяц: отдельные штаты, Лига 12 и Лига 24 в разные недели
+    { league: 'l12', stream: 'ny', weekday: 1, nth: 1, time: '19:00', tz: ET, hours: 2 },
+    { league: 'l24', stream: 'ny', weekday: 1, nth: 3, time: '19:00', tz: ET, hours: 2.5 },
+    { league: 'l12', stream: 'fl', weekday: 0, nth: 2, time: '15:00', tz: ET, hours: 2 },
+    { league: 'l24', stream: 'fl', weekday: 0, nth: 4, time: '15:00', tz: ET, hours: 2.5 },
+    { league: 'l12', stream: 'tx', weekday: 6, nth: 1, time: '13:00', tz: CT, hours: 2 },
+    { league: 'l24', stream: 'tx', weekday: 6, nth: 3, time: '13:00', tz: CT, hours: 2.5 },
+    { league: 'l12', stream: 'il', weekday: 1, nth: 2, time: '19:00', tz: CT, hours: 2 },
+    { league: 'l24', stream: 'il', weekday: 1, nth: 4, time: '19:00', tz: CT, hours: 2.5 },
+    { league: 'l12', stream: 'co', weekday: 2, nth: 2, time: '18:30', tz: MT, hours: 2 },
+    { league: 'l24', stream: 'co', weekday: 2, nth: 4, time: '18:30', tz: MT, hours: 2.5 },
+    { league: 'l12', stream: 'az', weekday: 4, nth: 1, time: '18:30', tz: AZ, hours: 2 },
+    { league: 'l24', stream: 'az', weekday: 4, nth: 3, time: '18:30', tz: AZ, hours: 2.5 },
+    { league: 'l12', stream: 'ca', weekday: 0, nth: 1, time: '14:00', tz: PT, hours: 2 },
+    { league: 'l24', stream: 'ca', weekday: 0, nth: 3, time: '14:00', tz: PT, hours: 2.5 },
+    { league: 'l12', stream: 'wa', weekday: 3, nth: 2, time: '18:30', tz: PT, hours: 2 },
+    { league: 'l24', stream: 'wa', weekday: 3, nth: 4, time: '18:30', tz: PT, hours: 2.5 },
 
-    // Лига 36 · 4 часа · раз в месяц
-    { league: 'l36', stream: 'us', weekday: 6, nth: 1, time: '10:00', tz: 'America/New_York', hours: 4 },
-    { league: 'l36', stream: 'ru', weekday: 6, nth: 2, time: '11:00', tz: 'Europe/Moscow',    hours: 4 },
-    { league: 'l36', stream: 'eu', weekday: 6, nth: 3, time: '10:00', tz: 'Europe/London',    hours: 4 },
-    { league: 'l36', stream: 'vi', weekday: 6, nth: 4, time: '14:00', tz: 'Asia/Ho_Chi_Minh', hours: 4 }
+    // --- Лига 36 · 4 часа · раз в месяц, по субботам
+    { league: 'l36', stream: 'intl',    weekday: 6, nth: 1, time: '10:00', tz: LON, hours: 4 },
+    { league: 'l36', stream: 'eastern', weekday: 6, nth: 2, time: '10:00', tz: ET,  hours: 4 },
+    { league: 'l36', stream: 'central', weekday: 6, nth: 3, time: '10:00', tz: CT,  hours: 4 },
+    { league: 'l36', stream: 'pacific', weekday: 6, nth: 4, time: '10:00', tz: PT,  hours: 4 }
   ];
 
   var HORIZON_DAYS = 75;
@@ -119,7 +144,7 @@
             out.push({
               at: at,
               ends: new Date(at.getTime() + rule.hours * 3600000),
-              league: rule.league, stream: rule.stream, hours: rule.hours
+              league: rule.league, stream: rule.stream, hours: rule.hours, tz: rule.tz
             });
           }
         }
@@ -177,8 +202,12 @@
   }
 
   function hoursLabel(h) {
-    return T.duration.replace('{h}', String(h).replace('.', T.decimal || ','));
+    // неразрывный пробел: на телефоне «2.5 h» не должно распадаться на строки
+    return T.duration.replace('{h}', String(h).replace('.', T.decimal || ',')).replace(' ', '\u00a0');
   }
+
+  // «10:00 AM» тоже не разрываем
+  function hm(fmt, d) { return fmt.format(d).replace(/ ([AP]M)/g, '\u00a0$1'); }
 
   /**
    * Время в формате «2026-09-19T12:00:00+03:00» — с поясом города потока.
@@ -214,11 +243,8 @@
       node.id = 'schedule-ld';
       document.head.appendChild(node);
     }
-    var rule = {};
-    RULES.forEach(function (r) { rule[r.league + r.stream] = r; });
-
     node.textContent = JSON.stringify(games.map(function (g) {
-      var r = rule[g.league + g.stream];
+      var r = { tz: g.tz };
       var e = {
         '@context': 'https://schema.org',
         '@type': 'Event',
@@ -244,12 +270,39 @@
     }));
   }
 
+  // Фильтр по группам: «все», международные, четыре пояса. Штат входит в группу
+  // своего пояса — человек из Техаса видит и игры Central Time, и игры Техаса.
+  var filter = 'all';
+  host.addEventListener('click', function (event) {
+    var b = event.target.closest('[data-filter]');
+    if (!b) return;
+    filter = b.getAttribute('data-filter');
+    render();
+    var again = host.querySelector('[data-filter="' + filter + '"]');
+    if (again) again.focus();
+  });
+
+  function groupOf(stream) { return (C.groups || {})[stream] || stream; }
+
+  function filterBar() {
+    if (!C.filters) return '';
+    return '<div class="schedule__filters" role="group" aria-label="' + esc(T.filterLabel || '') + '">' +
+      C.filters.map(function (f) {
+        return '<button type="button" class="chip' + (f.id === filter ? ' chip--on' : '') + '" ' +
+          'data-filter="' + esc(f.id) + '" aria-pressed="' + (f.id === filter) + '">' + esc(f.label) + '</button>';
+      }).join('') + '</div>';
+  }
+
   function render() {
     var now = new Date();
     var games = upcoming(now);
+    var all = games;
+    if (filter !== 'all') {
+      games = games.filter(function (g) { return groupOf(g.stream) === filter; });
+    }
 
     if (!games.length) {
-      host.innerHTML = '<p class="mute">' + esc(T.empty) + '</p>';
+      host.innerHTML = filterBar() + '<p class="mute">' + esc(T.empty) + '</p>';
       return;
     }
 
@@ -268,7 +321,7 @@
         var mark = shift === 0 ? ''
           : '<i title="' + esc(T.otherDay || '') + '">' + (shift > 0 ? '+' : '\u2212') +
             Math.abs(shift) + '</i>';
-        return '<span><b>' + esc(c.label) + '</b> ' + esc(c.fmt.format(g.at)) + mark + '</span>';
+        return '<span><b>' + esc(c.label) + '</b> ' + esc(hm(c.fmt, g.at)) + mark + '</span>';
       }).join('');
 
       return '' +
@@ -279,9 +332,13 @@
           '</div>' +
           '<div class="game__what">' +
             (i === 0 ? '<span class="game__flag">' + esc(T.soonest) + '</span>' : '') +
+            (C.kinds && C.kinds[g.stream] ? '<span class="game__kind">' + esc(C.kinds[g.stream]) + '</span>' : '') +
             '<h3>' + esc(label) + '</h3>' +
-            '<p class="game__time">' + esc(timeFmt.format(g.at)) + '–' +
-              esc(timeFmt.format(g.ends)) + ' · ' + esc(T.yourTime) +
+            (C.states && C.states[g.stream]
+              ? '<p class="game__states" title="' + esc(C.states[g.stream].full) + '">' +
+                  esc(C.states[g.stream].short) + '</p>' : '') +
+            '<p class="game__time">' + esc(hm(timeFmt, g.at)) + '–' +
+              esc(hm(timeFmt, g.ends)) + ' · ' + esc(T.yourTime) +
               ' · ' + esc(hoursLabel(g.hours)) + '</p>' +
             '<p class="game__clocks">' + clockCells + '</p>' +
           '</div>' +
@@ -294,10 +351,12 @@
     }).join('');
 
     host.innerHTML =
+      filterBar() +
       '<p class="schedule__count">' + esc(T.monthCount.replace('{n}', month)) + '</p>' +
       '<div class="games">' + rows + '</div>';
 
-    markup(games.slice(0, LIMIT));
+    // для поисковиков — ближайшие игры без учёта фильтра
+    markup(all.slice(0, LIMIT));
   }
 
   render();

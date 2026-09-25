@@ -433,11 +433,11 @@
   <div class="wrap">
     <span class="eyebrow">SCHEDULE</span>
     <h2>Upcoming games</h2>
-    <p class="lede">Games run in four streams: Europe, the Americas, Russian and Vietnamese. Times are shown on your own clock — the page reads the timezone from your device.</p>
+    <p class="lede">Open games run across the US — in each of the four time zones and in individual states — plus international games in English. Times are shown on your own clock: the page reads the time zone from your device.</p>
     <div class="schedule" id="schedule">
       <p class="mute">Turn on JavaScript to see the schedule — or just send a request and a manager will name the nearest dates.</p>
     </div>
-    <p class="schedule__note"><b>You can join any stream.</b> A stream is the host's language and an hour that suits that region, not a restriction by country. If none of the times work, send a request and tell us when you are free.</p>
+    <p class="schedule__note"><b>You can join any game.</b> A state or time-zone game is simply scheduled at an hour that suits that region — you don't have to live there. Alaska and Hawaii: Pacific Time games are the closest. If none of the times work, send a request and tell us when you are free.</p>
   </div>
 </section>
 
@@ -643,14 +643,14 @@ window.SCHEDULE_CONFIG = {
   hour12: true,
   limit: 8,
   // Cancelled games. "2026-01-03" drops the whole day,
-  // "2026-01-03 l12 ru" drops a single game. Past dates can stay in the list.
+  // "2026-01-03 l12 eastern" drops a single game. Past dates can stay in the list.
   exceptions: [],
   clocks: [
     { label: 'Los Angeles', tz: 'America/Los_Angeles' },
+    { label: 'Denver',      tz: 'America/Denver' },
+    { label: 'Chicago',     tz: 'America/Chicago' },
     { label: 'New York',    tz: 'America/New_York' },
     { label: 'London',      tz: 'Europe/London' },
-    { label: 'Moscow',      tz: 'Europe/Moscow' },
-    { label: 'Bangkok',     tz: 'Asia/Bangkok' },
     { label: 'UTC',         tz: 'UTC' }
   ],
   seo: {
@@ -662,20 +662,65 @@ window.SCHEDULE_CONFIG = {
   },
   leagues: { l12: 'League 12', l24: 'League 24', l36: 'League 36' },
   streams: {
-    ru: 'Russian stream',
-    eu: 'Europe stream',
-    us: 'Americas stream',
-    vi: 'Vietnamese stream'
+    intl: 'International',
+    eastern: 'Eastern Time', central: 'Central Time', mountain: 'Mountain Time', pacific: 'Pacific Time',
+    ny: 'New York', fl: 'Florida', tx: 'Texas', il: 'Illinois',
+    co: 'Colorado', az: 'Arizona', ca: 'California', wa: 'Washington'
   },
+  // Small tag above each game
+  kinds: {
+    intl: 'Open game · International',
+    eastern: 'Open game · Time zone', central: 'Open game · Time zone',
+    mountain: 'Open game · Time zone', pacific: 'Open game · Time zone',
+    ny: 'Open game · State', fl: 'Open game · State', tx: 'Open game · State', il: 'Open game · State',
+    co: 'Open game · State', az: 'Open game · State', ca: 'Open game · State', wa: 'Open game · State'
+  },
+  // States of each time zone. A state split between two zones is listed
+  // where most of its people live.
+  states: {
+    eastern: {
+      short: 'CT, DC, DE, FL, GA, IN, KY, MA, MD, ME, MI, NC, NH, NJ, NY, OH, PA, RI, SC, VA, VT, WV',
+      full: 'Connecticut, District of Columbia, Delaware, Florida, Georgia, Indiana, Kentucky, Massachusetts, Maryland, Maine, Michigan, North Carolina, New Hampshire, New Jersey, New York, Ohio, Pennsylvania, Rhode Island, South Carolina, Virginia, Vermont, West Virginia'
+    },
+    central: {
+      short: 'AL, AR, IA, IL, KS, LA, MN, MO, MS, ND, NE, OK, SD, TN, TX, WI',
+      full: 'Alabama, Arkansas, Iowa, Illinois, Kansas, Louisiana, Minnesota, Missouri, Mississippi, North Dakota, Nebraska, Oklahoma, South Dakota, Tennessee, Texas, Wisconsin'
+    },
+    mountain: {
+      short: 'AZ, CO, ID, MT, NM, UT, WY',
+      full: 'Arizona, Colorado, Idaho, Montana, New Mexico, Utah, Wyoming'
+    },
+    pacific: {
+      short: 'CA, NV, OR, WA',
+      full: 'California, Nevada, Oregon, Washington'
+    }
+  },
+  // Filter buttons. A state game belongs to the group of its time zone.
+  groups: {
+    intl: 'intl',
+    eastern: 'et', ny: 'et', fl: 'et',
+    central: 'ct', tx: 'ct', il: 'ct',
+    mountain: 'mt', co: 'mt', az: 'mt',
+    pacific: 'pt', ca: 'pt', wa: 'pt'
+  },
+  filters: [
+    { id: 'all',  label: 'All games' },
+    { id: 'et',   label: 'Eastern' },
+    { id: 'ct',   label: 'Central' },
+    { id: 'mt',   label: 'Mountain' },
+    { id: 'pt',   label: 'Pacific' },
+    { id: 'intl', label: 'International' }
+  ],
   text: {
-    duration:   '{h} h',
-    yourTime:   'your local time',
-    soonest:    'next up',
-    cta:        'Take a seat',
-    empty:      'The schedule is being updated. Send a request and a manager will name the nearest dates.',
-    monthCount: 'Games in the next 30 days: {n}',
-    decimal:    '.',
-    otherDay:   'a different calendar day in this city'
+    duration:    '{h} h',
+    yourTime:    'your local time',
+    soonest:     'next up',
+    cta:         'Take a seat',
+    empty:       'No games in this group in the coming weeks. Send a request and a manager will name the nearest dates.',
+    monthCount:  'Games in the next 30 days: {n}',
+    decimal:     '.',
+    otherDay:    'a different calendar day in this city',
+    filterLabel: 'Show games by region'
   }
 };
 </script>
