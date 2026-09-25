@@ -25,10 +25,18 @@
 
 var SHEET_LEADS = 'Лиды';
 
+// Порядок важен только для нового листа. В существующем строка пишется
+// по названиям колонок, а недостающие колонки дописываются справа —
+// поэтому новые поля добавляйте в КОНЕЦ списка, и старые строки не поедут.
 var HEADERS = [
-  'Дата', 'Имя', 'Телефон', 'Telegram', 'Лига', 'Игра',
-  'Язык', 'Страница', 'Источник', 'UTM', 'IP-метка'
+  'Дата', 'Имя', 'Телефон', 'Telegram', 'Лига',
+  'Язык', 'Страница', 'Источник', 'UTM', 'IP-метка',
+  'Игра', 'Мессенджер'
 ];
+
+// Ключи мессенджеров, которые присылает форма. Ключ, а не подпись: подпись
+// зависит от языка страницы, а в таблице нужно одно значение на всех.
+var MESSENGERS = { whatsapp: 'WhatsApp', telegram: 'Telegram', line: 'LINE' };
 
 /** Форма шлёт POST. Apps Script отдаёт ответ с CORS-заголовком по умолчанию. */
 function doPost(e) {
@@ -51,11 +59,15 @@ function doPost(e) {
       return ok({ status: 'error', message: 'not enough contact data' });
     }
 
+    var messenger = MESSENGERS[data.messenger] || '';
+
     var row = {
       date: new Date(),
       name: name,
       phone: phone,
-      telegram: normalizeTelegram(telegram),
+      // во второе поле пишут и Telegram, и LINE; @ нужна только первому
+      telegram: messenger === 'LINE' ? telegram : normalizeTelegram(telegram),
+      messenger: messenger,
       league: clean(data.league, 40),
       game: clean(data.game, 120),
       lang: clean(data.lang, 10),
@@ -94,10 +106,17 @@ function appendLead(row) {
   lock.waitLock(20000);
   try {
     var sheet = getSheet();
-    sheet.appendRow([
-      row.date, row.name, row.phone, row.telegram, row.league, row.game,
-      row.lang, row.page, row.referrer, row.utm, ''
-    ]);
+    var values = {
+      'Дата': row.date, 'Имя': row.name, 'Телефон': row.phone,
+      'Telegram': row.telegram, 'Лига': row.league, 'Язык': row.lang,
+      'Страница': row.page, 'Источник': row.referrer, 'UTM': row.utm,
+      'Игра': row.game || '', 'Мессенджер': row.messenger || ''
+    };
+    // Раскладываем по заголовкам листа, а не по позиции: менеджер мог
+    // переставить колонки, а лист мог остаться от прошлой версии кода.
+    sheet.appendRow(headerRow(sheet).map(function (h) {
+      return values.hasOwnProperty(h) ? values[h] : '';
+    }));
   } finally {
     lock.releaseLock();
   }
@@ -115,12 +134,21 @@ function getSheet() {
   }
 
   // Лист мог остаться от прошлой версии кода, где колонок было меньше.
-  // Тогда заголовок нужно дописать, иначе данные поедут не под теми названиями.
-  var width = sheet.getLastColumn();
-  if (width < HEADERS.length) {
-    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold');
+  // Недостающие колонки дописываем справа. Переписывать заголовок целиком
+  // нельзя: старые строки остались бы под чужими названиями.
+  var have = headerRow(sheet);
+  var missing = HEADERS.filter(function (h) { return have.indexOf(h) === -1; });
+  if (missing.length) {
+    sheet.getRange(1, have.length + 1, 1, missing.length)
+      .setValues([missing]).setFontWeight('bold');
   }
   return sheet;
+}
+
+function headerRow(sheet) {
+  var width = sheet.getLastColumn();
+  if (!width) return [];
+  return sheet.getRange(1, 1, 1, width).getValues()[0].map(String);
 }
 
 /**
@@ -194,6 +222,7 @@ function notifyTelegram(row) {
     row.telegram ? 'Telegram: ' + esc(row.telegram) : '',
     row.league ? 'Лига: ' + esc(row.league) : '',
     row.game ? 'Игра: ' + esc(row.game) : '',
+    row.messenger ? 'Написать в: ' + esc(row.messenger) : '',
     'Язык страницы: ' + esc(row.lang || '—'),
     row.utm ? 'Метки: ' + esc(row.utm) : '',
     row.referrer ? 'Пришёл с: ' + esc(row.referrer) : ''
