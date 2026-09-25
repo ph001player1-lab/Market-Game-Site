@@ -1,0 +1,196 @@
+/* Пхукетское сообщество. Подключается ПОСЛЕ общего styles.css:
+   вёрстка, шрифты и сетка общие с главной, здесь — палитра старого города
+   Пхукета и Андаманского моря плюс блоки, которых на главной нет.
+
+   Пастельные цвета фасадов (розовый, жёлтый, мятный, голубой, персиковый)
+   идут только в фон: светлый текст на них не читается. Текст и кнопки —
+   глубоким морским. */
+
+/* Тайских букв нет ни в Unbounded, ни в Manrope. unicode-range включает эти
+   шрифты только для тайского текста — латиница и кириллица остаются прежними. */
+@font-face{font-family:'Kanit';src:url('Kanit-Thai-700.woff2') format('woff2');font-weight:700 900;font-display:swap;unicode-range:U+0E01-0E5B,U+200C-200D,U+25CC}
+@font-face{font-family:'Noto Sans Thai';src:url('NotoSansThai.woff2') format('woff2');font-weight:100 900;font-display:swap;unicode-range:U+0E01-0E5B,U+200C-200D,U+25CC}
+
+:root{
+  --paper:#FBF6EE;
+  --paper-2:#EAF3EF;
+  --ink:#0F2A33;
+  --ink-2:#1D3E48;
+  --mute:#55686E;
+  --red:#0E7C86;
+  --red-dk:#0A6068;
+  --line:#D2DAD4;
+  --line-2:#E1E8E3;
+
+  --aqua:#7FD8D2;
+  --pink:#F2B8C0;
+  --yellow:#F4D77F;
+  --mint:#A9DCC8;
+  --sky:#A9D2E6;
+  --peach:#F3BF98;
+  --dark-mute:#A8BCC0;
+
+  --disp:'Unbounded','Kanit','Manrope',system-ui,sans-serif;
+  --sans:'Manrope','Noto Sans Thai',system-ui,-apple-system,'Segoe UI',sans-serif;
+
+  --grid:
+    linear-gradient(rgba(14,124,134,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14,124,134,.06) 1px, transparent 1px),
+    linear-gradient(rgba(14,124,134,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14,124,134,.03) 1px, transparent 1px);
+  --grid-dark:
+    linear-gradient(rgba(127,216,210,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127,216,210,.06) 1px, transparent 1px),
+    linear-gradient(rgba(127,216,210,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127,216,210,.03) 1px, transparent 1px);
+}
+
+/* цвета, которые в общем файле заданы для красной палитры */
+.sect--dark .mute,.sect--dark .lede{color:var(--dark-mute)}
+.sect--dark .eyebrow{color:var(--aqua)}
+.lang span{color:#fff}
+.btn{color:#fff}
+.btn--line{color:var(--ink)}
+.btn--line:hover{color:var(--paper)}
+.sect--dark .btn--line{color:var(--paper);border-color:rgba(251,246,238,.6)}
+.sect--dark .btn--line:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.btn--sm{padding:10px 18px;font-size:14.5px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Тайский: у букв надстрочные тоновые знаки, им нужно место по высоте;
+   отрицательная разрядка разрывает слоги, а прописных в тайском нет. */
+:lang(th) h1{letter-spacing:0;word-spacing:normal;line-height:1.22;font-size:clamp(30px,9.6cqw,70px)}
+:lang(th) h2,:lang(th) h3,:lang(th) .logo{letter-spacing:0;line-height:1.3}
+:lang(th) body,:lang(th) p,:lang(th) li{line-height:1.75}
+:lang(th) .eyebrow,:lang(th) .meet__tag,:lang(th) .fmt__len,:lang(th) .board__t,
+:lang(th) .mission h3,:lang(th) .meet__date span{letter-spacing:.02em}
+
+/* --- первый экран --- */
+.logo em{color:var(--red)}
+.hero__cta-note{margin:16px 0 0;font-size:15px;color:var(--mute)}
+.hero__cta-note a{font-weight:700}
+
+/* табло «ближайшее на острове» справа от заголовка */
+.board{background:var(--ink);color:var(--paper);border:2px solid var(--ink);overflow:hidden;animation:rise .7s cubic-bezier(.2,.75,.3,1) .1s both}
+.board__street{display:block;width:100%;height:auto;background:var(--paper)}
+.board__in{padding:20px 20px 22px}
+.board__t{display:block;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--aqua);margin:0 0 14px}
+.board__foot{margin:14px 0 0;font-size:13.5px;color:var(--dark-mute)}
+.board__foot a{color:var(--aqua)}
+
+/* --- карточки встреч --- */
+.meets__count{font-size:13.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--dark-mute);margin:0 0 16px}
+.meets{display:grid;gap:8px}
+.meet{display:grid;grid-template-columns:64px minmax(0,1fr);gap:6px 16px;align-items:start;padding:14px;border:1px solid rgba(251,246,238,.14);background:rgba(251,246,238,.04)}
+.meet--next{border-color:var(--aqua);background:rgba(127,216,210,.08)}
+.meet__date{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px 9px;background:var(--pink);color:var(--ink);text-align:center;line-height:1.1;border-radius:2px}
+.meet__date span{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.meet__date b{font-family:var(--disp);font-size:24px;font-weight:800;letter-spacing:-.02em;margin:2px 0}
+.meet__tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--pink);padding:2px 7px;margin-bottom:7px}
+.meet h3{margin:0 0 4px;font-size:17px;color:var(--paper);line-height:1.3}
+.meet__time{margin:0;font-size:14.5px;color:var(--dark-mute)}
+.meet__time em{font-style:normal;color:var(--aqua);font-weight:700}
+.meet__blurb{margin:8px 0 0;font-size:14.5px;color:var(--dark-mute);max-width:62ch}
+.meet__go{grid-column:1 / -1}
+.meet__go .btn{width:100%;text-align:center}
+
+/* цвет даты и метки — по формату, как фасады на улице Талан */
+.meet--game .meet__date,.meet--game .meet__tag,.fmt--game{--tone:var(--pink)}
+.meet--breakfast .meet__date,.meet--breakfast .meet__tag,.fmt--breakfast{--tone:var(--yellow)}
+.meet--workshop .meet__date,.meet--workshop .meet__tag,.fmt--workshop{--tone:var(--mint)}
+.meet--talk .meet__date,.meet--talk .meet__tag,.fmt--talk{--tone:var(--sky)}
+.meet--mixer .meet__date,.meet--mixer .meet__tag,.fmt--mixer{--tone:var(--peach)}
+.meet__date,.meet__tag{background:var(--tone,var(--pink))}
+
+@media(min-width:760px){
+  .meets:not(.meets--mini) .meet{grid-template-columns:76px minmax(0,1fr) auto;padding:18px 20px;gap:20px}
+  .meets:not(.meets--mini) .meet__date b{font-size:28px}
+  .meets:not(.meets--mini) .meet__go{grid-column:auto;align-self:center}
+  .meets:not(.meets--mini) .meet__go .btn{width:auto}
+  .meets:not(.meets--mini) .meet h3{font-size:18px}
+}
+/* в табло первого экрана — плотнее: кнопка справа, без описания */
+.meets--mini .meet{grid-template-columns:56px minmax(0,1fr);padding:12px}
+.meets--mini .meet__date b{font-size:21px}
+.meets--mini .meet h3{font-size:15.5px}
+.meets--mini .meet__time{font-size:13.5px}
+@media(min-width:520px){
+  .meets--mini .meet{grid-template-columns:56px minmax(0,1fr) auto}
+  .meets--mini .meet__go{grid-column:auto;align-self:center}
+}
+
+/* правила записи под календарём */
+.rules{list-style:none;margin:clamp(22px,3vw,30px) 0 0;padding:0;display:grid;gap:10px}
+@media(min-width:860px){.rules{grid-template-columns:repeat(3,1fr)}}
+.rules li{padding:16px 18px;border-left:3px solid var(--aqua);background:rgba(127,216,210,.07);font-size:15.5px;color:var(--dark-mute)}
+.rules b{display:block;color:var(--paper);margin-bottom:4px;font-size:16px}
+.waitlist{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin:clamp(22px,3vw,30px) 0 0;padding-top:clamp(18px,2.6vw,24px);border-top:1px solid rgba(251,246,238,.14)}
+.waitlist p{margin:0;max-width:60ch;color:var(--dark-mute);font-size:16px}
+.waitlist b{color:var(--paper)}
+
+/* --- миссия --- */
+.mission{display:grid;gap:14px;margin-top:clamp(26px,4vw,40px)}
+@media(min-width:860px){.mission{grid-template-columns:repeat(3,1fr)}}
+.mission article{border:2px solid var(--ink);background:var(--paper);padding:24px}
+.mission h3{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin:0 0 12px}
+.mission p{margin:0;font-size:17.5px;line-height:1.5;color:var(--ink)}
+
+/* --- модель торговых палат --- */
+.principles{list-style:none;counter-reset:p;margin:clamp(26px,4vw,40px) 0 0;padding:0;display:grid;gap:14px}
+@media(min-width:720px){.principles{grid-template-columns:1fr 1fr}}
+@media(min-width:1040px){.principles{grid-template-columns:repeat(4,1fr)}}
+.principles li{counter-increment:p;padding:22px 20px;border:1px solid rgba(251,246,238,.16);background:rgba(251,246,238,.035)}
+.principles li::before{content:"0" counter(p);display:block;font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:-.03em;color:var(--aqua);margin-bottom:10px}
+.principles h3{color:var(--paper);font-size:18px;margin:0 0 6px}
+.principles p{margin:0;font-size:15.5px;color:var(--dark-mute)}
+
+/* --- форматы встреч --- */
+.fmts{display:grid;gap:14px;margin-top:clamp(26px,4vw,40px)}
+@media(min-width:720px){.fmts{grid-template-columns:1fr 1fr}}
+@media(min-width:1040px){.fmts{grid-template-columns:repeat(3,1fr)}}
+.fmt{display:flex;flex-direction:column;border:2px solid var(--ink);background:var(--paper);overflow:hidden}
+.fmt__top{background:var(--tone,var(--paper-2));padding:18px 20px 16px;border-bottom:2px solid var(--ink)}
+.fmt__len{display:block;font-size:11.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
+.fmt h3{margin:0;font-size:20px;line-height:1.2}
+.fmt__body{padding:18px 20px 22px;flex:1;display:flex;flex-direction:column}
+.fmt__body p{margin:0 0 12px;font-size:15.5px;color:var(--mute)}
+.fmt__body p:last-child{margin-bottom:0}
+.fmt__price{margin-top:auto!important;padding-top:10px;font-weight:700;color:var(--ink)!important}
+.fmt--own{border-style:dashed;background:transparent}
+.fmt--own .fmt__top{background:transparent}
+.fmt--own .btn{margin-top:auto;align-self:flex-start}
+
+/* --- для кого --- */
+.who{display:grid;gap:12px;margin-top:clamp(26px,4vw,40px)}
+@media(min-width:680px){.who{grid-template-columns:1fr 1fr}}
+@media(min-width:1040px){.who{grid-template-columns:repeat(3,1fr)}}
+.who div{padding:18px 20px;border:1.5px solid var(--ink);background:var(--paper)}
+.who h3{font-size:17px;margin:0 0 4px}
+.who p{margin:0;font-size:15px;color:var(--mute)}
+
+/* --- игра и закрытые игры --- */
+.duo{display:grid;gap:clamp(26px,4vw,48px);align-items:start}
+@media(min-width:900px){.duo{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}}
+.facts{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--line-2)}
+.facts li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line-2);font-size:16px}
+.facts li span{color:var(--mute)}
+.facts li b{text-align:right}
+.private{border:2px solid var(--ink);background:var(--paper-2);padding:clamp(22px,3vw,30px)}
+.private h3{font-size:22px;margin:0 0 10px}
+.private p{margin:0 0 18px;font-size:16px;color:var(--mute)}
+
+/* --- партнёры --- */
+.partners{display:grid;gap:14px;margin-top:clamp(26px,4vw,40px)}
+@media(min-width:900px){.partners{grid-template-columns:repeat(3,1fr)}}
+.partner{display:flex;flex-direction:column;border:2px solid var(--ink);background:var(--paper);padding:24px}
+.partner h3{font-size:19px;margin:0 0 8px}
+.partner p{margin:0 0 18px;font-size:15.5px;color:var(--mute)}
+.partner .btn{margin-top:auto;align-self:flex-start}
+
+/* --- контакты --- */
+.contacts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.contacts .btn{display:inline-flex;align-items:baseline;gap:8px}
+.contacts small{font-weight:600;opacity:.75;font-size:13px}
+
+/* улица из шопхаусов над подвалом */
+.street{height:96px;background:url('shophouses.svg') repeat-x left bottom / auto 96px;border-bottom:2px solid var(--ink)}
