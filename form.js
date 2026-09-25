@@ -57,10 +57,26 @@
       href: C.privacyUrl, target: '_blank', rel: 'noopener', text: T.privacy
     }));
 
+    // Выбор мессенджера — только там, где он задан в настройках страницы
+    // (на пхукетской: адрес встречи присылаем в личку, и надо знать куда).
+    // В заявку уходит ключ — whatsapp / telegram / line, а не подпись.
+    var messengerRow = null;
+    if (C.messengers) {
+      var messengerSelect = el('select', { id: 'messenger', name: 'messenger' });
+      Object.keys(C.messengers).forEach(function (key) {
+        messengerSelect.appendChild(el('option', { value: key, text: C.messengers[key] }));
+      });
+      messengerRow = el('div', { class: 'lf__row' }, [
+        el('label', { for: 'messenger', text: T.messenger }),
+        messengerSelect
+      ]);
+    }
+
     form = el('form', { class: 'lf__form', novalidate: 'novalidate' }, [
       field('name', T.name, 'text', T.namePh),
       field('phone', T.phone, 'tel', T.phonePh),
-      field('telegram', T.telegram, 'text', T.telegramPh),
+      field('telegram', T.telegram, 'text', T.telegramPh)
+    ].concat(messengerRow ? [messengerRow] : []).concat([
       el('div', { class: 'lf__row' }, [
         el('label', { for: 'league', text: T.league }),
         leagueSelect
@@ -71,7 +87,7 @@
         el('input', { type: 'text', id: 'company', name: 'company', tabindex: '-1', autocomplete: 'off' })
       ]),
       el('div', { class: 'lf__check' }, [consent, consentLabel])
-    ]);
+    ]));
 
     statusBox = el('p', { class: 'lf__status', role: 'status', 'aria-live': 'polite' });
     submitBtn = el('button', { type: 'submit', class: 'btn', text: T.submit });
@@ -166,8 +182,15 @@
       name: name,
       phone: phone,
       telegram: tg,
-      league: C.leagues[form.league.value] || '',
+      // Префикс видит только менеджер: по нему в таблице отличают заявки
+      // пхукетского сообщества от заявок основного сайта.
+      // managerLeagues — подписи для таблицы, если они на другом языке, чем
+      // страница (на пхукетских страницах менеджерам уходит по-русски).
+      league: C.leagues[form.league.value]
+        ? (C.leaguePrefix || '') +
+          ((C.managerLeagues || C.leagues)[form.league.value] || C.leagues[form.league.value]) : '',
       game: pickedGame,
+      messenger: form.messenger ? form.messenger.value : '',
       company: form.company.value,
       elapsed: Date.now() - openedAt,
       lang: C.lang,

@@ -1,6 +1,6 @@
-/* Вёрстка сайта «Захвати рынок». Одна на все языковые версии.
+/* Вёрстка сайта «Рыночек Порешает». Одна на все языковые версии.
    Файл лежит в корне, поэтому пути к шрифтам ниже работают
-   и для /, и для /en/, и для /vi/. */
+   и для /, и для /en/, и для /phuket/. */
 
 @font-face{font-family:'Unbounded';src:url('Unbounded.woff2') format('woff2');font-weight:200 900;font-style:normal;font-display:swap}
 @font-face{font-family:'Manrope';src:url('Manrope.woff2') format('woff2');font-weight:200 800;font-style:normal;font-display:swap}
@@ -66,6 +66,8 @@ p{margin:0 0 1.05em}
 
 .eyebrow{display:block;font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--red);margin-bottom:16px}
 
+/* кнопки-<button> браузер по умолчанию набирает системным шрифтом, а не шрифтом страницы */
+button{font-family:inherit}
 .btn{display:inline-block;padding:16px 32px;font-weight:700;font-size:16.5px;letter-spacing:.005em;text-decoration:none;border:2px solid var(--red);background:var(--red);color:#FFF6F3;border-radius:3px;transition:background .15s,border-color .15s,transform .12s}
 .btn:hover{background:var(--red-dk);border-color:var(--red-dk)}
 .btn:active{transform:translateY(1px)}

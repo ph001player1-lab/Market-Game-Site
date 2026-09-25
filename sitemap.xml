@@ -6,7 +6,6 @@
     <loc>https://marketgame.club/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://marketgame.club/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://marketgame.club/en/"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://marketgame.club/vi/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://marketgame.club/"/>
   </url>
 
@@ -14,20 +13,26 @@
     <loc>https://marketgame.club/en/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://marketgame.club/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://marketgame.club/en/"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://marketgame.club/vi/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://marketgame.club/"/>
   </url>
 
-  <url>
-    <loc>https://marketgame.club/vi/</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://marketgame.club/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://marketgame.club/en/"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://marketgame.club/vi/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://marketgame.club/"/>
-  </url>
 
   <url><loc>https://marketgame.club/privacy.html</loc></url>
   <url><loc>https://marketgame.club/en/privacy.html</loc></url>
-  <url><loc>https://marketgame.club/vi/privacy.html</loc></url>
+
+
+  <!-- Пхукетское сообщество: своя языковая группа, не перевод главной -->
+  <url>
+    <loc>https://marketgame.club/phuket/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://marketgame.club/phuket/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://marketgame.club/phuket/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://marketgame.club/phuket/"/>
+  </url>
+  <url>
+    <loc>https://marketgame.club/phuket/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://marketgame.club/phuket/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://marketgame.club/phuket/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://marketgame.club/phuket/"/>
+  </url>
 
 </urlset>
