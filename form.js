@@ -4,7 +4,11 @@
 
    Кнопка открывает форму, если у неё есть атрибут data-lead.
    Значение атрибута — ключ лиги из FORM_CONFIG.leagues, например data-lead="l12".
-   data-lead="" открывает форму без заранее выбранной лиги. */
+   data-lead="" открывает форму без заранее выбранной лиги.
+
+   Ссылка с параметром league открывает форму сразу при загрузке страницы:
+   /?league=l12#leagues. Принимает те же ключи и синонимы start, growth,
+   elite. Так на игру ведут партнёрские сайты. */
 
 (function () {
   'use strict';
@@ -253,4 +257,30 @@
     event.preventDefault();
     open(trigger.getAttribute('data-lead'), trigger.getAttribute('data-game'));
   });
+
+  // Ссылка вида /?league=l12 открывает форму сразу. Синонимы нужны, чтобы
+  // партнёрам не приходилось знать внутренние ключи. Неизвестное значение
+  // ничего не открывает. Остальные параметры (UTM) не трогаем: validate()
+  // передаёт их менеджеру вместе с заявкой.
+  var LEAGUE_ALIASES = { start: 'l12', growth: 'l24', elite: 'l36' };
+
+  function leagueFromUrl() {
+    var key = (new URLSearchParams(location.search).get('league') || '').toLowerCase();
+    key = LEAGUE_ALIASES[key] || key;
+    return key && Object.prototype.hasOwnProperty.call(C.leagues, key) ? key : '';
+  }
+
+  function openFromUrl() {
+    var league = leagueFromUrl();
+    if (!league) return;
+    open(league);
+    // Прокрутка к якорю (#leagues) переносит фокус на body, то есть из
+    // открытой формы. Возвращаем его в первое поле.
+    window.addEventListener('load', function () {
+      if (dialog.open && !dialog.contains(doc.activeElement)) form.name.focus();
+    });
+  }
+
+  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', openFromUrl);
+  else openFromUrl();
 })();
